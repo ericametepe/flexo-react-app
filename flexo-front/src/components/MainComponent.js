@@ -6,7 +6,15 @@ import Home from "./HomeComponent";
 import Pref from "./PrefComponent";
 import Act from "./ActComponent";
 import Notif from "./NotifComponent";
-import {fetchDesks, fetchFloors, fetchSites, fetchSits, fetchSpaces, postSit} from "../redux/ActionCreators";
+import {
+    fetchDesks,
+    fetchFloors,
+    fetchSites,
+    fetchSits,
+    fetchSpaces,
+    postSit,
+    releaseSit
+} from "../redux/ActionCreators";
 import {connect} from "react-redux";
 
 
@@ -25,8 +33,9 @@ const mapDispatchToProps = dispatch => ({
     fetchFloors: () => dispatch(fetchFloors()),
      fetchSpaces:() => dispatch(fetchSpaces()),
     fetchDesks: ()  => dispatch(fetchDesks()),
-    fetchSits : ()  => dispatch(fetchSits()),
-    postSit: (siteId,floorId,spaceId,deskId) => dispatch(postSit(siteId,floorId,spaceId,deskId))
+     fetchSits : ()  => dispatch(fetchSits()),
+     postSit: (siteId,floorId,spaceId,deskId) => dispatch(postSit(siteId,floorId,spaceId,deskId)),
+     releaseSit: (sitting) => dispatch(releaseSit(sitting))
 });
 
 class Main extends Component{
@@ -49,6 +58,7 @@ class Main extends Component{
                       sitesLoading={this.props.sites.isLoading}
                       sitesErrMsg={this.props.sites.errMsg}
                       postSit={this.props.postSit}
+                      releaseSit={this.props.releaseSit}
                       sittings={this.props.sits.sits}
                 />)
         };

@@ -18,8 +18,9 @@ class SearchResult extends Component {
                               floorId={item.floorId}
                               spaceId={item.spaceId}
                               num={item.num}
-                              sittings={this.props.sittings}   />
-                ));
+                              sittings={this.props.sittings}
+                              releaseSit={this.props.releaseSit}/>
+              ))
         }
       else
         {

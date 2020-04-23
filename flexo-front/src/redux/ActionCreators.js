@@ -6,7 +6,7 @@ import {
     LOADING_FLOORS,
     LOADING_SPACES,
     SITES_FAILING,
-    SITES_LOADING, SPACES_FAILED, ADD_SIT, SITS_FAILING, FETCH_SITS, SITS_LOADING
+    SITES_LOADING, SPACES_FAILED, ADD_SIT, SITS_FAILING, FETCH_SITS, SITS_LOADING, UPDATE_SITTING
 } from "./ActionTypes";
 import {baseUrl} from "./baseUrl";
 
@@ -183,7 +183,7 @@ function create_UUID(){
 }
 
 
-const addSit= (sit)=>({
+export const addSit= (sit)=>({
      type : ADD_SIT,
      payload: sit
 });
@@ -233,6 +233,50 @@ export const postSit = (siteId,floorId,spaceId,deskId) => dispatch => {
         .catch(error => {
             console.log("post sits", error.message);
             alert("Your seat could not be posted\nError: " + error.message);
+        });
+};
+
+const updateSitting=(response)=> ({
+    type:UPDATE_SITTING,
+    payload:response
+});
+
+export const releaseSit = (sitting) => dispatch => {
+    let upSitting={};
+    Object.assign(upSitting,sitting);
+    upSitting.end=new Date().toISOString();
+    let url= `${baseUrl}/sits/${upSitting.id}`;
+
+    return fetch(baseUrl + "sits/"+upSitting.id, {
+
+        method: "PUT",
+        body: JSON.stringify(upSitting),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+        .then(
+            response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    var error = new Error(
+                        "Error " + response.status + ": " + response.statusText
+                    );
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                throw error;
+            }
+        )
+        .then(response => response.json())
+        .then(response => dispatch(updateSitting(response)))
+        .catch(error => {
+            console.log("put sits", error.message);
+            alert("Your seat could not be updated: " + error.message);
         });
 };
 

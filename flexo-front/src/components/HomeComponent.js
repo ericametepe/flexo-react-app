@@ -12,6 +12,7 @@ function Home(props) {
                         loading={props.sitesLoading}
                         errSites={props.sitesErrMsg}
                         postSit={props.postSit}
+                        releaseSit={props.releaseSit}
                         sittings={props.sittings}
             />
         </div>);

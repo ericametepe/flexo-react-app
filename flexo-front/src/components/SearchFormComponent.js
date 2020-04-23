@@ -1,8 +1,7 @@
 import React,{Component} from "react";
-import {Control, Form} from "react-redux-form";
+import {Control, Errors, Form} from "react-redux-form";
 import {Button} from "react-bootstrap";
 import SearchResult from "./SearchResultComponent";
-import DeskItem from "./DeskItemComponent";
 
 
 
@@ -12,47 +11,64 @@ class SearchForm extends Component {
         super(props);
         this.state={
             valueSite: '',
-            valueFloor: '',
-            valueSpace: '',
+            floorsOptions:[],
+            spacesOptions: [],
             displayResult:false,
-            resultDesk:[],
-            date: new Date()
+            resultDesk:[]
         };
-        this.handleChangeSite=this.handleChangeSite.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
+        this.updateFloorOptions=this.updateFloorOptions.bind(this);
+        this.updateSpaceOptions=this.updateSpaceOptions.bind(this);
     }
 
-    updateOptions= (event)=>{
-        let options = [...event.target.options].filter(opt=>opt.selected).map(opt=>opt.value);
-        //this.setState({[event.target.name]:options});
-        alert('A search was submitted: ' + JSON.stringify(options));
+    updateFloorOptions= (event)=>{
+        let optSite = [...event.target.options].filter(opt=>opt.selected).map(opt=>opt.value);
+        console.log(`=========xhandleChangeSite ${JSON.stringify(optSite)}`);
+        let floorsFound = this.props.floors.filter(f => f.siteId.localeCompare(optSite)===0);
+        this.setState({
+            floorsOptions:floorsFound,
+            spacesOptions:[]
+        })
 
-        console.log(`=========xhandleChangeSite ${JSON.stringify(options)}`);
-    }
+    };
 
-    handleChangeSite = (event) => {
-        console.log(`=========xhandleChangeSite ${this.state.valueSite}`);
-        this.setState({valueSite: event.target.value});
-    }
+    updateSpaceOptions= (event)=>{
+        let optFloor = [...event.target.options].filter(opt=>opt.selected).map(opt=>opt.value);
+        console.log(`=========xhandleChangeSite ${JSON.stringify(optFloor)}`);
+        let spacesFound = this.props.spaces.filter(s => s.floorId.localeCompare(optFloor)===0);
 
-    handleChangeFloor(event){
-        this.setState({valueFloor: event.target.value});
-    }
+        this.setState({
+            spacesOptions:spacesFound
+        })
 
-    handleChangeSpace(event){
-        this.setState({valueSpace: event.target.value});
-    }
+    };
+
+
 
     handleSubmit(values) {
-        let resultDesk = this.props.desks.filter(desk => values.spaceId.localeCompare(desk.spaceId)===0)
-            .map(desk => Object.assign(desk,values));
+        let {desks} =this.props;
+
         this.setState({
-            displayResult:!this.state.displayResult,
-            resultDesk : resultDesk
+            resultDesk:[]
         });
-        alert('A search was submitted: ' + JSON.stringify(this.state.resultDesk)+"spaceID::"+values.spaceId+"Display ?"+this.state.displayResult);
+
+        console.log(`Desks from pros : ${JSON.stringify(desks)}`);
+
+
+        let result = desks.filter(desk => values.spaceId.localeCompare(desk.spaceId)===0)
+            .map(desk => Object.assign(desk,values));
+
+        alert('Before: ' + 'resultDesk='+ JSON.stringify(this.state.resultDesk) +'values :'+JSON.stringify(values));
+
+        this.setState({
+            displayResult:true,
+            resultDesk : result
+        });
+
         Object.assign(values,{});
-        Object.assign(resultDesk,{});
+        //Object.assign(result,{});
+
+        alert('After: ' +'resultDesk='+ JSON.stringify(this.state.resultDesk) +'values :'+JSON.stringify(values));
     }
 
 
@@ -66,28 +82,33 @@ class SearchForm extends Component {
         } else {
             return (
                 <div>
-                    <Form  model="searchTerm" onSubmit={(values)=>this.handleSubmit(values)}>
+                    <Form  model="searchTerm" onSubmit={(values)=>this.handleSubmit(values)} >
                         <label>Choose the site</label>
-                        <Control.select model=".siteId" name="siteId" onChange={()=>this.updateOptions}>
+                        <Control.select model=".siteId" name="siteId" onChange={(event)=>this.updateFloorOptions(event)} >
                             {this.props.sites.map(site =>
                                 <option key={site.name} value={site.id} > {site.name}</option>
                             )}
                         </Control.select>
-                        <label>Choose the floor</label>
-                        <Control.select model=".floorId" name="floorId">
-                            {this.props.floors.map(floor =>
+                        <Control.select model=".floorId" name="floorId"  onChange={(event)=>this.updateSpaceOptions(event)}>
+                          {this.state.floorsOptions.map(floor =>
                                 <option key={floor.id} value={floor.id}> {floor.num}</option>
-                            )}
+                            ).concat(<option key="default" value=""> Choose the floor</option>)}
                         </Control.select>
-                        <label>Choose the spaces </label>
-                        <Control.select model=".spaceId" name="spaceId" onChange={() => this.updateOptions}>
-                            {this.props.spaces.map(space=>
+
+                        <Control.select model=".spaceId" name="spaceId">
+                            {this.state.spacesOptions.map(space=>
                             <option key={space.id} value={space.id} >{space.num}</option>
-                            )}
+                            ).concat(<option key="default" value="">Choose a space</option>)}
                         </Control.select>
-                        <Button variant="light" type="submit"> <i className="fa fa-search-minus"></i></Button>
+
+
+
+                        <Button variant="primary" type="submit"> <i className="fa fa-search-minus"></i></Button>
                     </Form>
-                    <SearchResult  found={this.state.displayResult} items={this.state.resultDesk} postSit={this.props.postSit} sittings={this.props.sittings}/>
+                    <SearchResult  found={this.state.displayResult} items={this.state.resultDesk}
+                                   postSit={this.props.postSit}
+                                   sittings={this.props.sittings}
+                                   releaseSit={this.props.releaseSit}/>
                 </div>)
 
 
