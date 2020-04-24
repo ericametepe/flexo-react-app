@@ -12,7 +12,7 @@ import {
     fetchSites,
     fetchSits,
     fetchSpaces,
-    postSit,
+    postSit, rate,
     releaseSit
 } from "../redux/ActionCreators";
 import {connect} from "react-redux";
@@ -35,7 +35,8 @@ const mapDispatchToProps = dispatch => ({
     fetchDesks: ()  => dispatch(fetchDesks()),
      fetchSits : ()  => dispatch(fetchSits()),
      postSit: (siteId,floorId,spaceId,deskId) => dispatch(postSit(siteId,floorId,spaceId,deskId)),
-     releaseSit: (sitting) => dispatch(releaseSit(sitting))
+     releaseSit: (sitting) => dispatch(releaseSit(sitting)),
+     rate: (rating) => dispatch(rate(rating))
 });
 
 class Main extends Component{
@@ -59,6 +60,7 @@ class Main extends Component{
                       sitesErrMsg={this.props.sites.errMsg}
                       postSit={this.props.postSit}
                       releaseSit={this.props.releaseSit}
+                      rate={this.props.rate}
                       sittings={this.props.sits.sits}
                 />)
         };

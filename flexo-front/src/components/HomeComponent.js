@@ -13,6 +13,7 @@ function Home(props) {
                         errSites={props.sitesErrMsg}
                         postSit={props.postSit}
                         releaseSit={props.releaseSit}
+                        rate={props.rate}
                         sittings={props.sittings}
             />
         </div>);

@@ -15,4 +15,5 @@ export const SITS_FAILING="SITS_FAILING";
 export const FETCH_SITS="FETCH_SITS";
 export const SITS_LOADING="SITS_LOADING";
 export const UPDATE_SITTING="UPDATE_SITTING";
+export const CREATE_RATING="CREATE_RATING";
 

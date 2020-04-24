@@ -52,13 +52,8 @@ class SearchForm extends Component {
             resultDesk:[]
         });
 
-        console.log(`Desks from pros : ${JSON.stringify(desks)}`);
-
-
         let result = desks.filter(desk => values.spaceId.localeCompare(desk.spaceId)===0)
             .map(desk => Object.assign(desk,values));
-
-        alert('Before: ' + 'resultDesk='+ JSON.stringify(this.state.resultDesk) +'values :'+JSON.stringify(values));
 
         this.setState({
             displayResult:true,
@@ -68,13 +63,11 @@ class SearchForm extends Component {
         Object.assign(values,{});
         //Object.assign(result,{});
 
-        alert('After: ' +'resultDesk='+ JSON.stringify(this.state.resultDesk) +'values :'+JSON.stringify(values));
+        console.log('After: ' +'resultDesk='+ JSON.stringify(this.state.resultDesk) +'values :'+JSON.stringify(values));
     }
 
 
-
     render() {
-
         if (this.props && this.props.errSites !== null) {
             return (<div>
                 <div className="alert alert-danger" role="alert">
@@ -83,11 +76,10 @@ class SearchForm extends Component {
             return (
                 <div>
                     <Form  model="searchTerm" onSubmit={(values)=>this.handleSubmit(values)} >
-                        <label>Choose the site</label>
                         <Control.select model=".siteId" name="siteId" onChange={(event)=>this.updateFloorOptions(event)} >
                             {this.props.sites.map(site =>
                                 <option key={site.name} value={site.id} > {site.name}</option>
-                            )}
+                            ).concat(<option key="default" value=""> Choose the Site</option>)}
                         </Control.select>
                         <Control.select model=".floorId" name="floorId"  onChange={(event)=>this.updateSpaceOptions(event)}>
                           {this.state.floorsOptions.map(floor =>
@@ -101,14 +93,14 @@ class SearchForm extends Component {
                             ).concat(<option key="default" value="">Choose a space</option>)}
                         </Control.select>
 
-
-
-                        <Button variant="primary" type="submit"> <i className="fa fa-search-minus"></i></Button>
+                        <Button variant="outline-success" type="submit"> <i className="fa fa-search-minus"></i></Button>
                     </Form>
-                    <SearchResult  found={this.state.displayResult} items={this.state.resultDesk}
+                    <SearchResult  found={this.state.displayResult}
+                                   items={this.state.resultDesk}
                                    postSit={this.props.postSit}
                                    sittings={this.props.sittings}
-                                   releaseSit={this.props.releaseSit}/>
+                                   releaseSit={this.props.releaseSit}
+                                   rate={this.props.rate}/>
                 </div>)
 
 

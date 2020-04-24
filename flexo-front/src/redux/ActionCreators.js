@@ -6,7 +6,7 @@ import {
     LOADING_FLOORS,
     LOADING_SPACES,
     SITES_FAILING,
-    SITES_LOADING, SPACES_FAILED, ADD_SIT, SITS_FAILING, FETCH_SITS, SITS_LOADING, UPDATE_SITTING
+    SITES_LOADING, SPACES_FAILED, ADD_SIT, SITS_FAILING, FETCH_SITS, SITS_LOADING, UPDATE_SITTING, CREATE_RATING
 } from "./ActionTypes";
 import {baseUrl} from "./baseUrl";
 
@@ -188,6 +188,15 @@ export const addSit= (sit)=>({
      payload: sit
 });
 
+function locateUser() {
+    let user = localStorage.userId;
+    if (!user || user === null) {
+        user = create_UUID();
+        localStorage.userId = user;
+    }
+    return user;
+}
+
 export const postSit = (siteId,floorId,spaceId,deskId) => dispatch => {
     const newSit = {
         siteId: siteId,
@@ -197,11 +206,7 @@ export const postSit = (siteId,floorId,spaceId,deskId) => dispatch => {
     };
     newSit.start = new Date().toISOString();
     newSit.end = null;
-    let user = localStorage.userId;
-    if (!user || user ===null){
-        user=create_UUID();
-        localStorage.userId=user;
-    }
+    let user = locateUser();
     newSit.userId=user;
 
     return fetch(baseUrl + "sits", {
@@ -277,6 +282,50 @@ export const releaseSit = (sitting) => dispatch => {
         .catch(error => {
             console.log("put sits", error.message);
             alert("Your seat could not be updated: " + error.message);
+        });
+};
+
+const addRating=(response)=> ({
+    type:CREATE_RATING,
+    payload: response
+});
+
+export const rate = (rating) => dispatch => {
+    let newRate={};
+    Object.assign(newRate,rating);
+    newRate.date=new Date().toISOString();
+    newRate.userId=locateUser();
+
+
+    return fetch(baseUrl + "rates", {
+        method: "POST",
+        body: JSON.stringify(newRate),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+        .then(
+            response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    var error = new Error(
+                        "Error " + response.status + ": " + response.statusText
+                    );
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                throw error;
+            }
+        )
+        .then(response => response.json())
+        .then(response => dispatch(addRating(response)))
+        .catch(error => {
+            console.log("post rate", error.message);
+            alert("Your seat could not be rated: " + error.message);
         });
 };
 

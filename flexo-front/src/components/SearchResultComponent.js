@@ -19,7 +19,8 @@ class SearchResult extends Component {
                               spaceId={item.spaceId}
                               num={item.num}
                               sittings={this.props.sittings}
-                              releaseSit={this.props.releaseSit}/>
+                              releaseSit={this.props.releaseSit}
+                              rate={this.props.rate}/>
               ))
         }
       else
