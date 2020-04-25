@@ -1,12 +1,23 @@
 import {
     ADD_DESKS,
     ADD_FLOORS,
-    ADD_SITES, ADD_SPACES, DESKS_FAILED,
-    FLOORS_FAILED, LOADING_DESKS,
+    ADD_SITES,
+    ADD_SPACES,
+    DESKS_FAILED,
+    FLOORS_FAILED,
+    LOADING_DESKS,
     LOADING_FLOORS,
     LOADING_SPACES,
     SITES_FAILING,
-    SITES_LOADING, SPACES_FAILED, ADD_SIT, SITS_FAILING, FETCH_SITS, SITS_LOADING, UPDATE_SITTING, CREATE_RATING
+    SITES_LOADING,
+    SPACES_FAILED,
+    ADD_SIT,
+    SITS_FAILING,
+    FETCH_SITS,
+    SITS_LOADING,
+    UPDATE_SITTING,
+    CREATE_RATING,
+    CREATE_REPORT
 } from "./ActionTypes";
 import {baseUrl} from "./baseUrl";
 
@@ -327,6 +338,51 @@ export const rate = (rating) => dispatch => {
             console.log("post rate", error.message);
             alert("Your seat could not be rated: " + error.message);
         });
+};
+
+const  addReporting=(response) => ({
+    type:CREATE_REPORT,
+    payload:response
+});
+
+export const report = (reporting) => dispatch =>{
+    let newReport= {};
+    Object.assign(newReport, reporting);
+    newReport.userId = locateUser();
+    newReport.date= new Date().toISOString();
+
+    return fetch(baseUrl + "reports", {
+        method: "POST",
+        body: JSON.stringify(newReport),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+        .then(
+            response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    var error = new Error(
+                        "Error " + response.status + ": " + response.statusText
+                    );
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                throw error;
+            }
+        )
+        .then(response => response.json())
+        .then(response => dispatch(addReporting(response)))
+        .catch(error => {
+            console.log("post rate", error.message);
+            alert("Your report can be saved: " + error.message);
+        });
+
+
 };
 
 const sitsLoading= () => ({

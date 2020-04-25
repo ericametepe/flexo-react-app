@@ -14,6 +14,7 @@ function Home(props) {
                         postSit={props.postSit}
                         releaseSit={props.releaseSit}
                         rate={props.rate}
+                        report={props.report}
                         sittings={props.sittings}
             />
         </div>);

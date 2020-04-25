@@ -20,7 +20,8 @@ class SearchResult extends Component {
                               num={item.num}
                               sittings={this.props.sittings}
                               releaseSit={this.props.releaseSit}
-                              rate={this.props.rate}/>
+                              rate={this.props.rate}
+                              report={this.props.report}/>
               ))
         }
       else

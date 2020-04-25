@@ -1,12 +1,16 @@
 import React, {Component} from "react";
-import {Control, Form} from "react-redux-form";
+
 import {Button} from "react-bootstrap";
+import {Control, Form} from "react-redux-form";
 const RATES_NUM =[1,2,3,4,5];
+const ISSUES_NUM =["Technical issue","Desk in use","Not Clean","Other","Not functional"];
+
+
 
 function RateForm({displayRate, handleSubmitRate}) {
     if (displayRate){
     return  (<div name="rateF" >
-        <Form name="rate" model="rating" onSubmit={values => handleSubmitRate(values)}>
+        <Form model="rating"  name="rate"  onSubmit={values => handleSubmitRate(values)}>
             <Control.select model=".rate" name="rate">
                 {RATES_NUM.map(r =>
                     <option key={r}  value={r}>{r}</option>
@@ -14,29 +18,65 @@ function RateForm({displayRate, handleSubmitRate}) {
             </Control.select>
             <label>Your comment</label>
             <Control.text model=".comment"></Control.text>
-            <Button type="submit" className="btn-primary"> Submit </Button>
+            <Button  type="submit" variant="outline-primary"> Submit </Button>
         </Form>
     </div>);
     }else{
         return(<div></div>);
     }
 }
+function ReportForm({displayReport, handleSubmitReport}) {
+    if (displayReport){
+      return  (<div name="reportF" >
+            <Form model="reporting"  name="report"  onSubmit={values => handleSubmitReport(values)}>
+                <Control.select model=".issueType" name="issueType">
+                    {ISSUES_NUM.map(r =>
+                        <option key={r}  value={r}>{r}</option>
+                    )}.concat(<option key="default" value="">Choose an issue</option>)
+                </Control.select>
+                <Control.text model=".description" placeholder="description"></Control.text>
+                <Button  type="submit" variant="primary"> Submit </Button>
+            </Form>
+        </div>);
+    }else{
+        return(<div></div>);
+    }
+}
+
 
 class DeskItem extends Component{
     constructor(props) {
         super(props);
         this.state={
             free:true,
-            displayRate:false
+            displayRate:false,
+            displayReport:false
         };
         this.useDesk=this.useDesk.bind(this);
         this.freeDesk=this.freeDesk.bind(this);
         this.handleSubmitRate=this.handleSubmitRate.bind(this);
-        this.handledisplayRate=this.handledisplayRate.bind(this);
+        this.handleDisplayRate=this.handleDisplayRate.bind(this);
+        this.handledisplayReport=this.handledisplayReport.bind(this);
+        this.handleSubmitReport=this.handleSubmitReport.bind(this);
 
     }
 
-    handledisplayRate(event){
+    handledisplayReport(event){
+
+        this.setState(
+            {displayReport:!this.state.displayReport}
+        );
+        event.preventDefault();
+    }
+
+    handleSubmitReport(values){
+        let  {siteId,floorId,spaceId,deskId}=this.props;
+         values = {siteId,floorId,spaceId,deskId};
+        alert(` form data:${JSON.stringify(values)}props=${JSON.stringify(this.props)}`);
+        this.props.report(values);
+    }
+
+    handleDisplayRate(event){
         console.log(`Rate what ? ${event.target}`);
         this.setState(
             {displayRate:!this.state.displayRate}
@@ -149,11 +189,12 @@ class DeskItem extends Component{
             <div>
                 <p> Desk identifier : {this.props.num}</p>
                <button type="button"  className="btn btn-primary" onClick={event => this.useDesk(event)}>Sit</button>
-            <button type="button" className="btn btn-primary"  onClick={event => this.handledisplayRate(event)}>Rate</button>
+            <button type="button" className="btn btn-primary"  onClick={event => this.handleDisplayRate(event)}>Rate</button>
                 <RateForm displayRate={this.state.displayRate} handleSubmitRate={this.handleSubmitRate}></RateForm>
             <button type="button" className="btn btn-primary">Scan</button>
             <button type="button" className="btn btn-primary">Ad as Favorite</button>
-            <button type="button" className="btn btn-primary">Report</button>
+            <button type="button" className="btn btn-primary" onClick={event => this.handledisplayReport(event)}>Report</button>
+                <ReportForm displayReport={this.state.displayReport}  handleSubmitReport={this.handleSubmitReport}></ReportForm>
         </div>);
             } else {
                 return (
