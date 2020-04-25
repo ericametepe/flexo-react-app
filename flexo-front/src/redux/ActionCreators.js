@@ -17,7 +17,7 @@ import {
     SITS_LOADING,
     UPDATE_SITTING,
     CREATE_RATING,
-    CREATE_REPORT
+    CREATE_REPORT, CREATE_FAVORITE
 } from "./ActionTypes";
 import {baseUrl} from "./baseUrl";
 
@@ -380,6 +380,51 @@ export const report = (reporting) => dispatch =>{
         .catch(error => {
             console.log("post rate", error.message);
             alert("Your report can be saved: " + error.message);
+        });
+
+
+};
+
+const createFavorite= (response) => ({
+    type:CREATE_FAVORITE,
+    payload:response
+});
+
+export const addFav = (fav) => dispatch =>{
+    let newFav= {};
+    Object.assign(newFav, fav);
+    newFav.userId = locateUser();
+    newFav.date= new Date().toISOString();
+
+    return fetch(baseUrl + "favorites", {
+        method: "POST",
+        body: JSON.stringify(newFav),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+        .then(
+            response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    var error = new Error(
+                        "Error " + response.status + ": " + response.statusText
+                    );
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                throw error;
+            }
+        )
+        .then(response => response.json())
+        .then(response => dispatch(createFavorite(response)))
+        .catch(error => {
+            console.log("post favorite", error.message);
+            alert("Your post favorite cannot be saved: " + error.message);
         });
 
 

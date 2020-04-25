@@ -101,7 +101,8 @@ class SearchForm extends Component {
                                    sittings={this.props.sittings}
                                    releaseSit={this.props.releaseSit}
                                    rate={this.props.rate}
-                                   report={this.props.report}/>
+                                   report={this.props.report}
+                                   addFav={this.props.addFav}/>
                 </div>)
 
 

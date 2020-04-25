@@ -7,6 +7,7 @@ import Pref from "./PrefComponent";
 import Act from "./ActComponent";
 import Notif from "./NotifComponent";
 import {
+    addFav,
     fetchDesks,
     fetchFloors,
     fetchSites,
@@ -25,7 +26,7 @@ const mapStateToProps = state => {
         floors: state.floors,
         spaces: state.spaces,
         desks:  state.desks,
-        sits: state.sits
+        sits:   state.sits
     };
 };
 
@@ -38,7 +39,8 @@ const mapDispatchToProps = dispatch => ({
      postSit: (siteId,floorId,spaceId,deskId) => dispatch(postSit(siteId,floorId,spaceId,deskId)),
      releaseSit: (sitting) => dispatch(releaseSit(sitting)),
      rate: (rating) => dispatch(rate(rating)),
-     report: (reporting) => dispatch(report(reporting))
+     report: (reporting) => dispatch(report(reporting)),
+     addFav: (fav) => dispatch(addFav(fav)),
 
 });
 
@@ -65,6 +67,7 @@ class Main extends Component{
                       releaseSit={this.props.releaseSit}
                       rate={this.props.rate}
                       report={this.props.report}
+                      addFav={this.props.addFav}
                       sittings={this.props.sits.sits}
                 />)
         };

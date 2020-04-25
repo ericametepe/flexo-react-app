@@ -50,7 +50,8 @@ class DeskItem extends Component{
         this.state={
             free:true,
             displayRate:false,
-            displayReport:false
+            displayReport:false,
+            disableFav:false
         };
         this.useDesk=this.useDesk.bind(this);
         this.freeDesk=this.freeDesk.bind(this);
@@ -58,6 +59,7 @@ class DeskItem extends Component{
         this.handleDisplayRate=this.handleDisplayRate.bind(this);
         this.handledisplayReport=this.handledisplayReport.bind(this);
         this.handleSubmitReport=this.handleSubmitReport.bind(this);
+        this.handleAddFavorite=this.handleAddFavorite.bind(this);
 
     }
 
@@ -192,7 +194,7 @@ class DeskItem extends Component{
             <button type="button" className="btn btn-primary"  onClick={event => this.handleDisplayRate(event)}>Rate</button>
                 <RateForm displayRate={this.state.displayRate} handleSubmitRate={this.handleSubmitRate}></RateForm>
             <button type="button" className="btn btn-primary">Scan</button>
-            <button type="button" className="btn btn-primary">Ad as Favorite</button>
+            <button type="button" className="btn btn-primary" onClick={this.handleAddFavorite}  disabled={this.state.disableFav}>Ad as Favorite</button>
             <button type="button" className="btn btn-primary" onClick={event => this.handledisplayReport(event)}>Report</button>
                 <ReportForm displayReport={this.state.displayReport}  handleSubmitReport={this.handleSubmitReport}></ReportForm>
         </div>);
@@ -212,7 +214,13 @@ class DeskItem extends Component{
             }
 
 
-
-
+    handleAddFavorite() {
+        let  {siteId,floorId,spaceId,deskId}=this.props;
+        let fav = {siteId,floorId,spaceId,deskId};
+        this.props.addFav(fav);
+        this.setState({
+            disableFav:true
+        })
+    }
 }
 export default DeskItem;

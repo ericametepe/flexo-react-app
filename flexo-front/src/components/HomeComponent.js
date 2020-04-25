@@ -16,6 +16,7 @@ function Home(props) {
                         rate={props.rate}
                         report={props.report}
                         sittings={props.sittings}
+                        addFav={props.addFav}
             />
         </div>);
     }
