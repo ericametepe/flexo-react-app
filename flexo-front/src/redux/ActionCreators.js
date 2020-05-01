@@ -17,7 +17,14 @@ import {
     SITS_LOADING,
     UPDATE_SITTING,
     CREATE_RATING,
-    CREATE_REPORT, CREATE_FAVORITE
+    CREATE_REPORT,
+    CREATE_FAVORITE,
+    LOADING_FAVS,
+    READ_FAVORITES,
+    READ_FAVSFAILED,
+    LOADING_REPORTS,
+    READ_REPORTS,
+    REPORTS_FAILED, RATE_LOADING, FETCH_RATINGS
 } from "./ActionTypes";
 import {baseUrl} from "./baseUrl";
 
@@ -199,7 +206,7 @@ export const addSit= (sit)=>({
      payload: sit
 });
 
-function locateUser() {
+export function locateUser() {
     let user = localStorage.userId;
     if (!user || user === null) {
         user = create_UUID();
@@ -469,6 +476,121 @@ export const fetchSits = ()=> dispatch =>{
         .then(response => response.json())
         .then(sits => dispatch(addSits(sits)))
         .catch(error => dispatch(sitsFailed(error.message)));
+};
+
+const  favLoading= ()=> ({
+        type:LOADING_FAVS
+});
+
+const readFavs=(favs) =>({
+    type: READ_FAVORITES,
+    payload:favs
+});
+
+const readFavsFailed= (message)=> ({
+    type: READ_FAVSFAILED,
+     payload:message
+});
+
+export const fetchFavorites = ()=> dispatch =>{
+    dispatch(favLoading());
+
+    return fetch(baseUrl + "favorites")
+        .then(
+            response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    var error = new Error(
+                        "Error " + response.status + ": " + response.statusText
+                    );
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                let errmess = new Error(error.message);
+                throw errmess;
+            }
+        )
+        .then(response => response.json())
+        .then(favs => dispatch(readFavs(favs)))
+        .catch(error => dispatch(readFavsFailed(error.message)));
+};
+
+const  reportLoading=()=> ({
+    type:LOADING_REPORTS
+});
+
+const readReports=(reports)=>( {
+    type:READ_REPORTS,
+    payload:reports
+});
+
+const readReportsFailed=(message)=> ({
+    type:REPORTS_FAILED,
+    payload:message
+});
+
+export const fetchReports = ()=> dispatch =>{
+    dispatch(reportLoading());
+
+    return fetch(baseUrl + "reports")
+        .then(
+            response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    var error = new Error(
+                        "Error " + response.status + ": " + response.statusText
+                    );
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                let errmess = new Error(error.message);
+                throw errmess;
+            }
+        )
+        .then(response => response.json())
+        .then(reports => dispatch(readReports(reports)))
+        .catch(error => dispatch(readReportsFailed(error.message)));
+};
+
+const ratingLoading=()=> ({
+    type:RATE_LOADING
+});
+
+const readRatings=(data)=> ({
+    type:FETCH_RATINGS,
+    payload: data
+});
+
+export const fetchRatings = ()=> dispatch =>{
+    dispatch(ratingLoading());
+
+    return fetch(baseUrl + "rates")
+        .then(
+            response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    var error = new Error(
+                        "Error " + response.status + ": " + response.statusText
+                    );
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                let errmess = new Error(error.message);
+                throw errmess;
+            }
+        )
+        .then(response => response.json())
+        .then(data => dispatch(readRatings(data)))
+        .catch(error => dispatch(readReportsFailed(error.message)));
 };
 
 

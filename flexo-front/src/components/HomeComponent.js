@@ -1,5 +1,6 @@
 import React from "react";
 import SearchForm from "./SearchFormComponent";
+import SiteList from "./SiteListComponent";
 
 
 function Home(props) {
@@ -17,8 +18,14 @@ function Home(props) {
                         report={props.report}
                         sittings={props.sittings}
                         addFav={props.addFav}
+                        favorites={props.favorites}
             />
-        </div>);
+                <h4>Browse our Office buildings</h4>
+            <SiteList sites={props.sites} floors={props.floors}/>
+            <hr/>
+        </div>
+
+        );
     }
 
 

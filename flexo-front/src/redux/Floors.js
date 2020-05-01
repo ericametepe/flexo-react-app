@@ -1,4 +1,4 @@
-import {ADD_FLOORS, FLOORS_FAILED, SITES_FAILING, SITES_LOADING} from "./ActionTypes";
+import {ADD_FLOORS, FLOORS_FAILED, SITES_LOADING} from "./ActionTypes";
 
 export const Floors = (state = {floors:[], isLoading:true, errMsg:null}, action) => {
     switch (action.type){

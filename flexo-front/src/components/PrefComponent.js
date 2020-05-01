@@ -1,42 +1,70 @@
 import React, {Component} from "react";
+import {Card, Table} from "react-bootstrap";
+import {isBusy} from "./DeskItemComponent";
+import {Alert} from "reactstrap";
 
 class Pref extends Component{
 
-    constructor(props) {
-        super(props);
+   constructor(props){
+    super(props);
+
+    this.state={
+        favs :this.props.favorites
+    };
     }
 
-    render() {
-        return (   <div name="pref">
-                <h2>Preferences</h2>
+    componentDidUpdate(prevProps, prevState, snapshot) {
+     alert("I want to know i there are changes.....");
+       if(prevProps.favorites !==this.props.favorites){
+        this.setState({
+            "favs": this.props.favorites
+        });
 
-                <div name="vtable">
-                    <table className="ui celled table"  v-if="localPrefs && localPrefs.length>0">
-                        <thead>
-                        <tr>
-                            <th>Site</th>
-                            <th>Floor</th>
-                            <th>Desk</th>
-                            <th>Desk status</th>
-                            <th> </th>
+     }
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td data-label="sName">localPref.siteName</td>
-                            <td data-label="fName">localPref.floorId</td>
-                            <td data-label="dName"> localPref.deskNumber</td>
-                            <td data-label="staName">localPref.deskStatus</td>
-                        </tr>
-                    </tbody>
-                </table>
-    </div>
-            </div>);
     }
 
-}
+        render() {
+            if (this.props.favorites && this.props.favorites.length>0){
+        return(
+          <div name="vtable">
+              <p>{this.state.favs.length}</p>
+          <Table striped bordered hover size="sm">
+              <thead>
+              <tr>
+                  <th>Site</th>
+                  <th>Desk status</th>
+              </tr>
+              </thead>
+              <tbody>
+              {this.props.favorites.sort((a, b) => a.id>b.id?-1:1).map(fav =>
+                  <tr key={fav.id}>
+                  <td>
+                      <Card bg={isBusy(this.props.sittings,fav.deskId)?"warning":"success"}>
+                      <Card.Header>Office : {fav.siteId}</Card.Header>
+                      <Card.Body>
+                          <Card.Title>Office @ </Card.Title>
+                          <Card.Text>
+                             Desk : {fav.deskId}
+                             <br/>
+                             Floor: {fav.floorId}
+                             <br/>
+                             Date: {fav.date}
+                          </Card.Text>
+                      </Card.Body>
+                      </Card>
+                  </td>
+                  <td data-label="dName">{isBusy(this.props.sittings,fav.deskId)?'Occupied':'Free'} </td>
+              </tr>)}
+              </tbody>
+          </Table>
+      </div>);
+    } else{
+       return(<div><Alert color="warning"> No desk favorite yet...</Alert></div>);
+    }
 
+    }
+    }
 
+    export default (Pref) ;
 
-export default   Pref;

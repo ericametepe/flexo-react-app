@@ -8,7 +8,7 @@ class SearchResult extends Component {
     }
 
     render() {
-        if (this.props.items&& this.props.items.length>0){
+        if (this.props.found){
               return (
                    this.props.items.map(item =>
                     <DeskItem postSit={this.props.postSit}
@@ -17,17 +17,25 @@ class SearchResult extends Component {
                               siteId={item.siteId}
                               floorId={item.floorId}
                               spaceId={item.spaceId}
+                              siteName={item.siteName}
+                              spaceNum={item.spaceNum}
+                              floorNum={item.floorNum}
                               num={item.num}
+                              image={item.image}
                               sittings={this.props.sittings}
                               releaseSit={this.props.releaseSit}
                               rate={this.props.rate}
                               report={this.props.report}
-                              addFav={this.props.addFav}/>
+                              addFav={this.props.addFav}
+
+                              favorites={this.props.favorites}/>
               ))
         }
       else
         {
-            return(<h4>No data Browse our sites here</h4>);
+            return(<div> </div>
+
+            );
         }
     }
 

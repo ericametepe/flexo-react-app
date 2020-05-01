@@ -1,30 +1,26 @@
 import React, {Component} from "react";
 
-import {Button} from "react-bootstrap";
+import {Button, ListGroup, ListGroupItem} from "react-bootstrap";
 import {Control, Form} from "react-redux-form";
-const RATES_NUM =[1,2,3,4,5];
+import {ScanForm} from "./ScanFormComponent";
+import RateForm from "./RateFormComponent";
 const ISSUES_NUM =["Technical issue","Desk in use","Not Clean","Other","Not functional"];
 
+export const isBusy=(sittings, deskId)=> sittings.some(sit=> sit.deskId.localeCompare(deskId)===0 && sit.end===null && sit.start!==null);
+const isYours=(sittings, deskId, userId)=> sittings.some(sit=> sit.deskId.localeCompare(deskId)===0 && sit.end===null && sit.userId.localeCompare(userId)===0);
+const isYourFav=(favs, deskId, userId)=> favs.some(sit=> sit.deskId.localeCompare(deskId)===0  && sit.userId.localeCompare(userId)===0);
 
-
-function RateForm({displayRate, handleSubmitRate}) {
-    if (displayRate){
-    return  (<div name="rateF" >
-        <Form model="rating"  name="rate"  onSubmit={values => handleSubmitRate(values)}>
-            <Control.select model=".rate" name="rate">
-                {RATES_NUM.map(r =>
-                    <option key={r}  value={r}>{r}</option>
-                )}.concat(<option key="default" value="">Choose a rate</option>)
-            </Control.select>
-            <label>Your comment</label>
-            <Control.text model=".comment"></Control.text>
-            <Button  type="submit" variant="outline-primary"> Submit </Button>
-        </Form>
-    </div>);
-    }else{
-        return(<div></div>);
+function RenderDeskOwner({userId, deskId, sittings}){
+    let test = isYours(sittings,deskId, userId);
+    if (test) {
+        return (<span className="fa fa-search-location">Your current office</span>);
     }
-}
+        else
+            return(<span></span>);
+    }
+
+
+
 function ReportForm({displayReport, handleSubmitReport}) {
     if (displayReport){
       return  (<div name="reportF" >
@@ -51,7 +47,8 @@ class DeskItem extends Component{
             free:true,
             displayRate:false,
             displayReport:false,
-            disableFav:false
+            disableFav:false,
+            displayScan:false
         };
         this.useDesk=this.useDesk.bind(this);
         this.freeDesk=this.freeDesk.bind(this);
@@ -60,6 +57,8 @@ class DeskItem extends Component{
         this.handledisplayReport=this.handledisplayReport.bind(this);
         this.handleSubmitReport=this.handleSubmitReport.bind(this);
         this.handleAddFavorite=this.handleAddFavorite.bind(this);
+        this.handleDisplayScan=this.handleDisplayScan.bind(this);
+
 
     }
 
@@ -120,24 +119,21 @@ class DeskItem extends Component{
     freeDesk(event) {
         let  {siteId,floorId,spaceId,deskId, sittings}=this.props;
         let userId=localStorage.userId;
-        console.log(`${event.target} : Use the desk :${this.props.num} of space ${this.props.siteId}
+
+        console.log(`${event.target} : free Desk :${deskId} of space ${this.props.siteId}
          of floor ${this.props.floorId} 
          of site ${this.props.spaceId} userId:${userId}`);
 
-        let idx = sittings.findIndex(sit =>
-             sit.userId.localeCompare(userId)===0
-            && sit.deskId.localeCompare(deskId)===0
-            && sit.spaceId.localeCompare(spaceId)===0
-            && sit.floorId.localeCompare(floorId)===0
-            && sit.siteId.localeCompare(siteId)===0
-            && sit.start!==null
-            &&sit.end===null);
+        let sit = this.props.sittings.find(s =>
+             s.userId.localeCompare(userId)===0
+            && s.deskId.localeCompare(deskId)===0
+            && s.start!==null
+            && s.end===null);
 
-        if (idx && idx!==-1){
-            let sit = sittings[idx];
+        if (sit && sit.id){
             this.props.releaseSit(sit);
         } else {
-            alert(userId + "You are not allowed to release this desk"+JSON.stringify(this.props));
+            alert( "You are not allowed to release this desk"+JSON.stringify(this.props.sittings));
         }
 
         event.preventDefault();
@@ -146,26 +142,9 @@ class DeskItem extends Component{
 
 
     render() {
+
         let  {siteId,floorId,spaceId,deskId, sittings}=this.props;
-
         let userId =localStorage.userId;
-
-        let idxPresent  = sittings.findIndex(sit => sit.userId.localeCompare(userId)===0 &&
-            sit.start!=null
-            && sit.end===null
-            && sit.deskId.localeCompare(deskId)===0
-            && sit.spaceId.localeCompare(spaceId)===0
-            && sit.floorId.localeCompare(floorId)===0
-            && sit.siteId.localeCompare(siteId)===0
-        );
-
-
-        let  idx  = sittings.findIndex(sit => sit.siteId.localeCompare(siteId)===0
-            && sit.spaceId.localeCompare(spaceId)===0
-            && sit.floorId.localeCompare(floorId)===0
-            && sit.deskId.localeCompare(deskId)===0
-            && sit.start!==null
-            &&sit.end===null);
 
         const formRate=()=> {
          if(this.state.displayRate){
@@ -185,42 +164,59 @@ class DeskItem extends Component{
          }
         };
 
+        const isBusyTest=isBusy(sittings,deskId);
 
-            if (idx===-1){
-                return(
+        const isFav = isYourFav(this.props.favorites,deskId, userId);
+        return(
             <div>
-                <p> Desk identifier : {this.props.num}</p>
-               <button type="button"  className="btn btn-primary" onClick={event => this.useDesk(event)}>Sit</button>
-            <button type="button" className="btn btn-primary"  onClick={event => this.handleDisplayRate(event)}>Rate</button>
-                <RateForm displayRate={this.state.displayRate} handleSubmitRate={this.handleSubmitRate}></RateForm>
-            <button type="button" className="btn btn-primary">Scan</button>
-            <button type="button" className="btn btn-primary" onClick={this.handleAddFavorite}  disabled={this.state.disableFav}>Ad as Favorite</button>
-            <button type="button" className="btn btn-primary" onClick={event => this.handledisplayReport(event)}>Report</button>
-                <ReportForm displayReport={this.state.displayReport}  handleSubmitReport={this.handleSubmitReport}></ReportForm>
+                <ListGroup horizontal>
+                    <RenderDeskOwner userId={userId} sittings={sittings} deskId={deskId}/>&nbsp;
+                    Desk  : {this.props.num} &nbsp;
+                    Floor : {this.props.floorNum}&nbsp;
+                    Space : {this.props.spaceNum}&nbsp;
+                    Building : {this.props.siteName}&nbsp;
+                </ListGroup>
+
+                <ListGroup horizontal variant="info" >
+                   <ListGroupItem>
+                    <form name={isBusyTest?'leave':'sit'}>
+                    <button  type="button"  className="btn btn-primary" onClick={isBusyTest? event =>  this.freeDesk(event):event=>this.useDesk(event)}>
+                          {isBusy(sittings, deskId)?'Leave':'Sit'}
+                    </button>
+                    </form>
+                  </ListGroupItem>
+                    <ListGroupItem>
+                    <button type="button" className="btn btn-primary"  onClick={event => this.handleDisplayRate(event)}>Rate</button>
+                     <RateForm displayRate={this.state.displayRate} handleSubmitRate={this.handleSubmitRate}></RateForm>
+                     </ListGroupItem>
+                    <ListGroupItem>
+                        <button type="button" className="btn btn-primary" onClick={this.handleDisplayScan}>Scan</button>
+                        <ScanForm display={this.state.displayScan} image={this.props.image} num={this.props.num}></ScanForm>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                        <button type="button" className="btn btn-primary" onClick={this.handleAddFavorite}  disabled={isFav}>{isFav?'Your fav':'Add as Fav'}</button>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                        <button type="button" className="btn btn-primary" onClick={event => this.handledisplayReport(event)}>Report</button>
+                        <ReportForm displayReport={this.state.displayReport}  handleSubmitReport={this.handleSubmitReport}></ReportForm>
+                   </ListGroupItem>
+                </ListGroup>
         </div>);
-            } else {
-                return (
-                    <div>
-                    <p> Desk identifier : {this.props.num}</p>
-                    <button type="button" className="btn btn-primary" onClick={(event)=> this.freeDesk(event)}>Leave</button>
-                    <button type="button" className="btn btn-flickr">Rate</button>
-                    <button type="button" className="btn btn-flickr">Scan</button>
-                    <button type="button" className="btn btn-flickr">Ad as Favorite</button>
-                    <button type="button" className="btn btn-flickr">Report</button>
-                    <button type="button" className="btn btn-flickr">U're here</button>
-                    </div>)
             }
-
-            }
-
 
     handleAddFavorite() {
         let  {siteId,floorId,spaceId,deskId}=this.props;
         let fav = {siteId,floorId,spaceId,deskId};
         this.props.addFav(fav);
         this.setState({
-            disableFav:true
-        })
+            disableFav:!this.state.disableFav
+        });
+    }
+
+    handleDisplayScan() {
+        this.setState({
+            displayScan:!this.state.displayScan
+        });
     }
 }
 export default DeskItem;
