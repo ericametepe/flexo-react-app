@@ -1,6 +1,20 @@
 import React,{Component} from "react";
 import {chunk, freeDeskCount} from "./SiteListComponent";
 import {Link} from "react-router-dom";
+import {RenderCount} from "./SpaceComponent";
+import {findDesksBySpaceId} from "./FloorComponent";
+
+export function findDesksByFloorId(desks,spaces, floorId ){
+    let myspaces = spaces.filter(sp=>sp.floorId.localeCompare(floorId));
+    let result =[];
+    myspaces.forEach(sp=>{
+        let mydesk = findDesksBySpaceId(desks,sp.id);
+        if (mydesk && mydesk.length>0){
+           result= result.concat(mydesk);
+           }
+    });
+    return result;
+}
 
 export default class Site extends Component{
     constructor(props) {
@@ -22,7 +36,7 @@ export default class Site extends Component{
                             </div>
                             </Link>
                             <div className="badge-pill">
-                                {freeDeskCount(floor)}
+                                <RenderCount desks={findDesksByFloorId(this.props.desks,this.props.spaces, floor.id)} sittings={this.props.sittings}></RenderCount>
                             </div>
 
                         </div>

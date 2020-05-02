@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {chunk, freeDeskCount} from "./SiteListComponent";
+import {chunk} from "./SiteListComponent";
 import DeskItem from "./DeskItemComponent";
 import {fullDeskInfo, isBusy} from "./FlexoUtils";
 
@@ -49,20 +49,21 @@ class Space extends Component{
    }
 }
 
-function DeskStatusCounter(desks,sittings) {
+export function DeskStatusCounter(desks,sittings) {
     let busyCount= desks.filter(d=>isBusy(sittings,d.id)).length;
     let freeCount= desks.filter(d=>!isBusy(sittings,d.id)).length;
+    let total= desks.filter(d=>d && d.id!==null).length;
 
-    return  {busyCount,freeCount};
+    return  {busyCount,freeCount,total};
 }
 
-function RenderCount({desks, sittings}) {
-    let count = DeskStatusCounter(desks, sittings);
+export function RenderCount({desks, sittings}) {
+    let {freeCount,total} = DeskStatusCounter(desks, sittings);
     return (
         <div className="col-lg-pull-12">
-            <span className="badge-success">{" Count of free places :"+count.freeCount}</span>
+            <span className="badge-success">{" Free desk :"+freeCount}</span>
 
-            <span className="badge-warning">{" Count of in use places :"+count.busyCount}</span>
+            <span className="badge-warning">{" Total :"+total}</span>
 
         </div>)
 }

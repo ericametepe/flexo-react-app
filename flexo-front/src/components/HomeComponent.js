@@ -20,8 +20,14 @@ function Home(props) {
                         addFav={props.addFav}
                         favorites={props.favorites}
             />
-                <h4>Browse our Office buildings</h4>
-            <SiteList sites={props.sites} floors={props.floors}/>
+
+            <h4>Browse our Office buildings</h4>
+
+            <SiteList sites={props.sites}
+                      floors={props.floors}
+                      spaces={props.spaces}
+                      desks={props.desks}
+                      sittings={props.sittings}/>
             <hr/>
         </div>
 

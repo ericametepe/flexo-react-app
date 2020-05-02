@@ -1,12 +1,28 @@
-import React from "react";
+import React, {Component} from "react";
 import {
     Link,
 } from "react-router-dom";
+import {RenderCount} from "./SpaceComponent";
+import {findDesksByFloorId} from "./SiteComponent";
 
 
-export default function SiteList ({sites}) {
-    let chunkedSites =chunk(sites,3);
-    return (
+function findDesksBySiteId(sites, floors, spaces, desks, siteId) {
+    let result =[];
+    let myfloors=floors.filter(f=>f.siteId.localeCompare(siteId)===0);
+        myfloors.forEach(floor =>{
+            let desksByFloorId = findDesksByFloorId(desks,spaces,floor.id);
+            if (desksByFloorId && desksByFloorId.length>0){
+               result =result.concat(desksByFloorId);
+            }
+        });
+    return result;
+}
+
+export default class SiteList extends Component {
+
+    render() {
+    let chunkedSites =chunk(this.props.sites,3);
+        return (
         chunkedSites.map((chunk, index) =>
         <div className="row" key={index}>
             {chunk.map(site =>
@@ -22,19 +38,16 @@ export default function SiteList ({sites}) {
                         {site.adresse}
                     </div>
                     <div className="badge-pill">
-                        {freeDeskCount(site)}
+                        <RenderCount desks={findDesksBySiteId(this.props.sites,this.props.floors,this.props.spaces,this.props.desks, site.id)}
+                                     sittings={this.props.sittings}/>
                     </div>
 
-            </div>
-
-                   )}
+            </div>)}
         </div>
-
         )
-
-
     )
 
+}
 }
 
 export const freeDeskCount=(site, sittings)=>{

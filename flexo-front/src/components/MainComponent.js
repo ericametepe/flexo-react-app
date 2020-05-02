@@ -173,12 +173,18 @@ class Main extends Component{
 
         const SiteWithFloors=({match})=> {
             return(<Site siteId={match.params.siteId}
+                         desks={this.props.desks.desks}
+                         sittings={this.props.sits.sits}
+                         spaces={this.props.spaces.spaces}
                          floors={this.props.floors.floors.filter(f=>f.siteId.localeCompare(match.params.siteId)===0)}
 
             />)
         };
         const FloorWithSpaces=({match})=> {
-            return(<Floor siteId={match.params.siteId} floorId={match.params.floorId}
+            return(<Floor siteId={match.params.siteId}
+                          floorId={match.params.floorId}
+                          desks={this.props.desks.desks}
+                          sittings={this.props.sits.sits}
                           spaces={this.props.spaces.spaces.filter(s=>s.floorId.localeCompare(match.params.floorId)===0)}/>)
         };
 

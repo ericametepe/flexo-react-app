@@ -108,7 +108,7 @@
       "image": "42878c49-3e6d-4b6c-9965-f5299fc390adm.png"
     },
     {
-      "id": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0dd",
+      "id": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0ddd",
       "spaceId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc2rn",
       "num": "DESK115",
       "image": "42878c49-3e6d-4b6c-9965-f5299fc390adm.png"
@@ -226,8 +226,6 @@
       "id": 11
     },
     {
-
-
       "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
       "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
       "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
@@ -286,6 +284,16 @@
       "end": "2020-05-01T19:20:45.299Z",
       "userId": "ae735c2c-dc8c-4c8d-b950-e4fbc953cdcd",
       "id": 17
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-01T19:34:32.329Z",
+      "end": "2020-05-02T00:46:46.774Z",
+      "userId": "ae735c2c-dc8c-4c8d-b950-e4fbc953cdcd",
+      "id": 18
     }
   ],
   "rates": [
@@ -450,6 +458,12 @@
       "userId": "ae735c2c-dc8c-4c8d-b950-e4fbc953cdcd",
       "date": "2020-04-29T22:37:02.401Z",
       "id": 6
+    }
+  ],
+  "buildings":[
+    {
+    "name": "Trench Tower",
+    "units": [{"name": "R","desc": "Not so tall"},{"name": "R","desc": "Not so tall"}]
     }
   ]
 }

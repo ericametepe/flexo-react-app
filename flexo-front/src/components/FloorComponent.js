@@ -1,6 +1,10 @@
 import React,{Component} from "react";
 import {chunk, freeDeskCount} from "./SiteListComponent";
 import {Link} from "react-router-dom";
+import {locateElemById, locateElemsById} from "./FlexoUtils";
+import {DeskStatusCounter, RenderCount} from "./SpaceComponent";
+
+
 
 export default class Floor extends Component{
 
@@ -20,7 +24,7 @@ export default class Floor extends Component{
                             </div>
                             </Link>
                             <div className="badge-pill">
-                                {freeDeskCount(space)}
+                                <RenderCount desks={findDesksBySpaceId(this.props.desks,space.id)}  sittings={this.props.sittings}/>
                             </div>
 
                         </div>
@@ -31,4 +35,14 @@ export default class Floor extends Component{
         )
     }
 
+}
+
+export const  findDesksBySpaceId= (desks, spaceId)=> {
+    return desks.filter(desk =>desk.spaceId.localeCompare(spaceId)===0);
+}
+
+function ListDeskFromSpace(spaces, spaceId,desks, sittings) {
+    let myspace= locateElemById(spaces,spaceId);
+     let mydesks =desks.filter(desk=>desk.spaceId.localeCompare(spaceId));
+      DeskStatusCounter(mydesks,sittings);
 }
