@@ -1,8 +1,10 @@
 import React, {Component} from "react";
 import DeskItem from "./DeskItemComponent";
 import {locateUserActions, nbUsers, onlyUnique} from "./FlexoUtils";
-import {Alert} from "reactstrap";
+import {Alert, BreadcrumbItem} from "reactstrap";
 import {ListGroup, ListGroupItem} from "react-bootstrap";
+import Breadcrumb from "reactstrap/es/Breadcrumb";
+import {Link} from "react-router-dom";
 
  class Act extends Component{
     constructor(props) {
@@ -49,8 +51,8 @@ import {ListGroup, ListGroupItem} from "react-bootstrap";
         }
 
         const CurrentDesk=()=> {
-            let  {siteId,floorId,spaceId,deskId,deskNum,floorNum,spaceNum,siteName,image}=this.props.usersit;
             if (this.props.usersit && this.props.usersit.id){
+                let  {siteId,floorId,spaceId,deskId,deskNum,floorNum,spaceNum,siteName,image}=this.props.usersit;
                 return (
                     <div>
                         <DeskItem postSit={this.props.postSit}
@@ -77,8 +79,8 @@ import {ListGroup, ListGroupItem} from "react-bootstrap";
         };
 
         const LastDesk=()=> {
-            let  {siteId,floorId,spaceId,deskId,deskNum,floorNum,spaceNum,siteName,image}=this.props.lastsit;
             if (this.props.lastsit && this.props.lastsit.id){
+              let  {siteId,floorId,spaceId,deskId,deskNum,floorNum,spaceNum,siteName,image}=this.props.lastsit;
                 return (
                     <div> <p>Your previous</p>
                         <DeskItem postSit={this.props.postSit}
@@ -104,7 +106,13 @@ import {ListGroup, ListGroupItem} from "react-bootstrap";
                  }
         };
 
-                     return(<div>
+                     return(<div className="container-fluid">
+                         <div className="row">
+                             <Breadcrumb>
+                                 <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                                 <BreadcrumbItem active>Activities </BreadcrumbItem>
+                             </Breadcrumb>
+                         </div>
                              <CurrentDesk/>
                          <br/>
                          <LastDesk/>

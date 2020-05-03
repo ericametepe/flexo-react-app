@@ -9,6 +9,8 @@ export const onlyUnique= (value, index, self) => self.indexOf(value) === index;
 export const  nbUsers= (elements) => elements.map(r=>r.userId).filter(onlyUnique).length;
 export const locateUserLastAction=(elements, userId)=>locateUserActions(elements, userId).sort((a, b) => a.id>b.id?-1:1)[0];
 export const isBusy=(sittings, deskId)=> sittings.some(sit=> sit.deskId.localeCompare(deskId)===0 && sit.end===null && sit.start!==null);
+export const findBusyDeskBy=(sittings, deskId)=> sittings.find(sit=> sit.deskId.localeCompare(deskId)===0 && sit.end===null && sit.start!==null);
+
 
 
 export const fullDeskInfo=(deskId, desks, spaces, floors,sites, sittings=[])=>{
@@ -29,6 +31,8 @@ function DeskStatusCounter(desks,sittings) {
     let freeCount= desks.filter(d=>!isBusy(sittings,d)).length;
     return  {busyCount,freeCount};
 }
+
+
 
 
 

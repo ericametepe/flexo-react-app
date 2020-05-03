@@ -1,7 +1,11 @@
 import React, {Component} from "react";
-import {Card, Table} from "react-bootstrap";
-import {isBusy} from "./DeskItemComponent";
-import {Alert} from "reactstrap";
+import {Button, Table} from "react-bootstrap";
+import DeskItem from "./DeskItemComponent";
+import {Alert, BreadcrumbItem} from "reactstrap";
+import Breadcrumb from "reactstrap/es/Breadcrumb";
+import {Link} from "react-router-dom";
+
+
 
 class Pref extends Component{
 
@@ -11,6 +15,7 @@ class Pref extends Component{
     this.state={
         favs :this.props.favorites
     };
+    this.handleDeleteFav=this.handleDeleteFav.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -24,47 +29,72 @@ class Pref extends Component{
 
     }
 
-        render() {
-            if (this.props.favorites && this.props.favorites.length>0){
-        return(
-          <div name="vtable">
-              <p>{this.state.favs.length}</p>
-          <Table striped bordered hover size="sm">
-              <thead>
-              <tr>
-                  <th>Site</th>
-                  <th>Desk status</th>
-              </tr>
-              </thead>
-              <tbody>
-              {this.props.favorites.sort((a, b) => a.id>b.id?-1:1).map(fav =>
-                  <tr key={fav.id}>
-                  <td>
-                      <Card bg={isBusy(this.props.sittings,fav.deskId)?"warning":"success"}>
-                      <Card.Header>Office : {fav.siteId}</Card.Header>
-                      <Card.Body>
-                          <Card.Title>Office @ </Card.Title>
-                          <Card.Text>
-                             Desk : {fav.deskId}
-                             <br/>
-                             Floor: {fav.floorId}
-                             <br/>
-                             Date: {fav.date}
-                          </Card.Text>
-                      </Card.Body>
-                      </Card>
-                  </td>
-                  <td data-label="dName">{isBusy(this.props.sittings,fav.deskId)?'Occupied':'Free'} </td>
-              </tr>)}
-              </tbody>
-          </Table>
-      </div>);
-    } else{
-       return(<div><Alert color="warning"> No desk favorite yet...</Alert></div>);
+    handleDeleteFav(idFav){
+       console.log("We delete this fav"+idFav);
+       this.props.deleteFav(idFav);
     }
 
+        render() {
+       let favorites=this.props.favorites;
+         const PrefTable= ()=> {
+             if (favorites && favorites.length>0){
+             return(
+                 <div>
+                 <div className="col-12">
+                     <h3>List of your office preferences</h3>
+                     <hr/>
+                 </div>
+                 <Table striped bordered hover size="sm">
+                 <thead>
+                 <tr>
+                     <th>Desk</th>
+                     <th>Actions</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 {favorites.sort((a, b) => a.id > b.id ? -1 : 1).map(fav =>
+                     <tr key={fav.id}>
+                         <td>
+                             <DeskItem postSit={this.props.postSit}
+                                       deskId={fav.deskId}
+                                       desks={this.props.desks}
+                                       spaces={this.props.spaces}
+                                       floors={this.props.floors}
+                                       sites={this.props.sites}
+                                       sittings={this.props.sittings}
+                                       releaseSit={this.props.releaseSit}
+                                       rate={this.props.rate}
+                                       report={this.props.report}
+                                       addFav={this.props.addFav}
+                                       favorites={this.props.favorites}
+                                       deleteFav={this.props.deleteFav}/>
+                         </td>
+                         <td>
+                             <button onClick={() => this.handleDeleteFav(fav.id)} className="btn-danger">Delete</button>
+                         </td>
+                     </tr>)}
+                 </tbody>
+             </Table></div>);
+             } else{
+                 return(<Alert color="warning" className="container-fluid" >No preferences yet...</Alert>);
+             }
+
+         };
+
+                 return(
+                     <div className="container">
+                         <div className="row">
+                             <Breadcrumb>
+                                 <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                                 <BreadcrumbItem active>Preferences</BreadcrumbItem>
+                             </Breadcrumb>
+                         </div>
+                         <PrefTable/>
+                     </div>);
+         }
     }
-    }
+
+
 
     export default (Pref) ;
 

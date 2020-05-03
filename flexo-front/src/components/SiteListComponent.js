@@ -4,6 +4,8 @@ import {
 } from "react-router-dom";
 import {RenderCount} from "./SpaceComponent";
 import {findDesksByFloorId} from "./SiteComponent";
+import Breadcrumb from "reactstrap/es/Breadcrumb";
+import {BreadcrumbItem} from "reactstrap";
 
 
 function findDesksBySiteId(sites, floors, spaces, desks, siteId) {
@@ -22,6 +24,7 @@ export default class SiteList extends Component {
 
     render() {
     let chunkedSites =chunk(this.props.sites,3);
+    const FloorsChunked=()=>{
         return (
         chunkedSites.map((chunk, index) =>
         <div className="row" key={index}>
@@ -44,10 +47,15 @@ export default class SiteList extends Component {
 
             </div>)}
         </div>
-        )
-    )
+        ))}
 
-}
+        return(<div className="container-fluid">
+                    <FloorsChunked/>
+                </div> )
+
+    }
+
+
 }
 
 export const freeDeskCount=(site, sittings)=>{

@@ -25,5 +25,6 @@ export const READ_FAVSFAILED= "READ_FAVSFAILED";
 export const LOADING_REPORTS="LOADING_REPORTS";
 export const READ_REPORTS="READ_REPORTS";
 export const REPORTS_FAILED="REPORTS_FAILED";
-export const RATE_LOADING="export const";
+export const RATE_LOADING="RATE_LOADING";
+export const DELETE_FAVORITE="DELETE_FAVORITE";
 

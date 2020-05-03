@@ -24,7 +24,7 @@ import {
     READ_FAVSFAILED,
     LOADING_REPORTS,
     READ_REPORTS,
-    REPORTS_FAILED, RATE_LOADING, FETCH_RATINGS
+    REPORTS_FAILED, RATE_LOADING, FETCH_RATINGS, DELETE_FAVORITE
 } from "./ActionTypes";
 import {baseUrl} from "./baseUrl";
 
@@ -434,6 +434,36 @@ export const addFav = (fav) => dispatch =>{
             alert("Your post favorite cannot be saved: " + error.message);
         });
 
+
+};
+
+const  deleteFavorite=(response) => ({
+    type:DELETE_FAVORITE,
+    payload:response
+})
+
+export const deleteFav=(idFav) => dispatch =>{
+    
+    fetch(baseUrl+"favorites/"+idFav,{
+        method:"DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    }).then(response=>{
+        if (response.status===200){
+            return response
+        }else {
+            let error = new Error(
+                "Error " + response.status + ": " + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    }).then(dispatch(deleteFavorite(idFav)))
+        .catch(error => {
+        console.log("delete favorite", error.message);
+        alert("Your  favorite deletion cannot be completed: " + error.message);
+    });
 
 };
 

@@ -7,7 +7,7 @@ import Pref from "./PrefComponent";
 import Act from "./ActComponent";
 import Notif from "./NotifComponent";
 import {
-    addFav,
+    addFav, deleteFav,
     fetchDesks, fetchFavorites,
     fetchFloors, fetchRatings, fetchReports,
     fetchSites,
@@ -50,6 +50,7 @@ export const mapDispatchToProps = dispatch => ({
      rate: (rating) => dispatch(rate(rating)),
      report: (reporting) => dispatch(report(reporting)),
      addFav: (fav) => dispatch(addFav(fav)),
+     deleteFav:(idFav)=>dispatch(deleteFav(idFav)),
      fetchFavorites: () => dispatch(fetchFavorites()),
      fetchReports : () => dispatch(fetchReports()),
      fetchRatings:()=>dispatch(fetchRatings())
@@ -100,7 +101,18 @@ class Main extends Component{
 
         const UserPref= ()=>{
             return (<Pref favorites={this.props.favorites.favorites.filter(f => f.userId.localeCompare(currentUser)===0)}
-                          sittings={this.props.sits.sits}/>)
+                          sittings={this.props.sits.sits}
+                          sites={this.props.sites.sites}
+                          floors={this.props.floors.floors}
+                          spaces={this.props.spaces.spaces}
+                          desks={this.props.desks.desks}
+                          postSit={this.props.postSit}
+                          releaseSit={this.props.releaseSit}
+                          deleteFav={this.props.deleteFav}
+                          rate={this.props.rate}
+                          report={this.props.report}
+                          addFav={this.props.addFav}
+                          reports={this.props.reports.reports}/>)
         };
 
 
@@ -109,26 +121,30 @@ class Main extends Component{
                 && sit.start!==null && sit.end===null));
 
 
-
-            if (usersit.id) {
+            if (usersit && usersit.id) {
                 let site = locateElemById(this.props.sites.sites,usersit.siteId);
                 let space = locateElemById(this.props.spaces.spaces,usersit.spaceId);
                 let floor = locateElemById(this.props.floors.floors, usersit.floorId);
                 let desk = locateElemById(this.props.desks.desks,usersit.deskId);
+
+                if (desk && desk.id){
                 let {num, image}= desk;
                 usersit.deskNum=num;
                 usersit.image=image;
-                usersit.floorNum=floor.num;
-                usersit.spaceNum=space.num;
-                usersit.siteName=site.name;
-                usersit.adresse=site.adresse;
+                usersit.floorNum=floor?.num;
+                usersit.spaceNum=space?.num;
+                usersit.siteName=site?.name;
+                usersit.adresse=site?.adresse;
+
+                }
 
             }
-            let lastsit = Object.assign({}, this.props.sits.sits.filter(sit=>sit.userId.localeCompare(currentUser)===0
+            let lastsit = Object.assign({},
+                this.props.sits.sits.filter(sit=>sit.userId.localeCompare(currentUser)===0
                 && sit.start!==null
-                && sit.end!==null).sort((a,b)=>a.id>b.id?-1:1)[0]);
+                && sit.end!==null).sort((a,b)=>a.id>b.id?-1:1))[0];
 
-            if (lastsit.id) {
+            if (lastsit && lastsit.id) {
                 let site = locateElemById(this.props.sites.sites,lastsit.siteId);
                 let space = locateElemById(this.props.spaces.spaces,lastsit.spaceId);
                 let floor = locateElemById(this.props.floors.floors, lastsit.floorId);
@@ -173,6 +189,7 @@ class Main extends Component{
 
         const SiteWithFloors=({match})=> {
             return(<Site siteId={match.params.siteId}
+                         sites={this.props.sites.sites}
                          desks={this.props.desks.desks}
                          sittings={this.props.sits.sits}
                          spaces={this.props.spaces.spaces}
@@ -182,7 +199,9 @@ class Main extends Component{
         };
         const FloorWithSpaces=({match})=> {
             return(<Floor siteId={match.params.siteId}
+                          sites={this.props.sites.sites}
                           floorId={match.params.floorId}
+                          floors={this.props.floors.floors}
                           desks={this.props.desks.desks}
                           sittings={this.props.sits.sits}
                           spaces={this.props.spaces.spaces.filter(s=>s.floorId.localeCompare(match.params.floorId)===0)}/>)

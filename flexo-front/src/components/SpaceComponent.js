@@ -1,7 +1,10 @@
 import React, {Component} from "react";
 import {chunk} from "./SiteListComponent";
 import DeskItem from "./DeskItemComponent";
-import {fullDeskInfo, isBusy} from "./FlexoUtils";
+import {findBusyDeskBy, fullDeskInfo, isBusy, locateElemById} from "./FlexoUtils";
+import Breadcrumb from "reactstrap/es/Breadcrumb";
+import {BreadcrumbItem} from "reactstrap";
+import {Link} from "react-router-dom";
 
 class Space extends Component{
     constructor(props) {
@@ -42,6 +45,22 @@ class Space extends Component{
             )
         );
         return (<div className="container-fluid">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem>
+                        <Link to={'/sites/' + this.props.siteId + '/floors/'}>
+                        {"Floors of the building "+locateElemById(this.props.sites,this.props.siteId)?.name}
+                        </Link>
+                    </BreadcrumbItem>
+                    <BreadcrumbItem>
+                        <Link to={'/sites/' + this.props.siteId + '/floors/' + this.props.floorId + '/spaces/'}>
+                            {'Spaces of floor: '+locateElemById(this.props.floors,this.props.floorId)?.num}
+                        </Link>
+                    </BreadcrumbItem>
+                    <BreadcrumbItem active>{"Desks of the space "+locateElemById(this.props.spaces, this.props.spaceId)?.num} </BreadcrumbItem>
+                </Breadcrumb>
+            </div>
                     <Counter/>
                    <RowDesk/>
                </div>);
@@ -50,20 +69,21 @@ class Space extends Component{
 }
 
 export function DeskStatusCounter(desks,sittings) {
-    let busyCount= desks.filter(d=>isBusy(sittings,d.id)).length;
-    let freeCount= desks.filter(d=>!isBusy(sittings,d.id)).length;
-    let total= desks.filter(d=>d && d.id!==null).length;
+    let busyCount= desks.filter(d=>findBusyDeskBy(sittings,d.id)!==null).length;
+    let freeCount= desks.filter(d=>findBusyDeskBy(sittings,d.id)===undefined||findBusyDeskBy(sittings,d.id)===null).length;
+    let total= desks.length;
 
     return  {busyCount,freeCount,total};
 }
 
 export function RenderCount({desks, sittings}) {
-    let {freeCount,total} = DeskStatusCounter(desks, sittings);
+    let {busyCount,freeCount,total} = DeskStatusCounter(desks, sittings);
     return (
         <div className="col-lg-pull-12">
             <span className="badge-success">{" Free desk :"+freeCount}</span>
+            <span className="badge-warning">{" Ocupied desk :"+busyCount}</span>
 
-            <span className="badge-warning">{" Total :"+total}</span>
+            <span className="badge-info">{" Total :"+total}</span>
 
         </div>)
 }
