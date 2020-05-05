@@ -27,7 +27,6 @@ class SearchResult extends Component {
                               rate={this.props.rate}
                               report={this.props.report}
                               addFav={this.props.addFav}
-
                               favorites={this.props.favorites}/>
               ))
         }

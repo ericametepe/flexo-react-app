@@ -15,11 +15,24 @@ class SearchForm extends Component {
             floorsOptions:[],
             spacesOptions: [],
             displayResult:false,
-            resultDesk:[]
+            resultDesk:[],
+            activeSearch:false
         };
         this.handleSubmit=this.handleSubmit.bind(this);
         this.updateFloorOptions=this.updateFloorOptions.bind(this);
         this.updateSpaceOptions=this.updateSpaceOptions.bind(this);
+        this.updateDeskOptions=this.updateDeskOptions.bind(this);
+    }
+
+    updateDeskOptions = (event)=>{
+        let optDesk = [...event.target.options].filter(opt=>opt.selected).map(opt=>opt.value);
+        if (optDesk && this.state.floorsOptions
+            && this.state.floorsOptions.length>0
+            && this.state.spacesOptions &&this.state.spacesOptions.length>0){
+            this.setState({
+                activeSearch:true
+            })
+        }
     }
 
     updateFloorOptions= (event)=>{
@@ -49,13 +62,11 @@ class SearchForm extends Component {
         console.log(" desks======> :"+JSON.stringify(this.props.desks));
         let allDesk = this.props.desks;
 
-        console.log(" values.spaceId======> :"+values.spaceId);
+        let test = (locateElemById(this.props.floors, values.floorId)) && locateElemById(this.props.sites,values.siteId);
 
 
-        let result = allDesk.filter(d => {
-            console.log(JSON.stringify(d));
-           return values.spaceId.localeCompare(d.spaceId)===0;
-        })
+        if (test){
+        let result = allDesk.filter(d => values.spaceId.localeCompare(d.spaceId)===0)
             .filter(r=>r && r!==null)
             .map(d => {
                     d.floorId = values.floorId;
@@ -79,20 +90,21 @@ class SearchForm extends Component {
 
         this.setState({
             displayResult:result.length>0,
-            resultDesk : result
+            resultDesk : result,
+            activeSearch:false,
+            floorsOptions:[],
+            spacesOptions: []
+
         });
 
-        console.log("Last result" +JSON.stringify(result));
 
-        Object.assign(values,{});
-        //Object.assign(result,{});
-
-        console.log("After resultDesk="+ JSON.stringify(this.state.resultDesk) +'values :'+JSON.stringify(values));
+        }
     }
 
 
     render() {
          const required = (val)=> val && val.length;
+         const valid=(searchTerm) =>required(searchTerm.siteId) && required(searchTerm.floorId) && required(searchTerm.spaceId);
         if (this.props && this.props.errSites !== null) {
             return (<div>
                 <div className="alert alert-danger" role="alert">
@@ -116,7 +128,7 @@ class SearchForm extends Component {
                             ).concat(<option key="default" value=""> Choose the floor</option>)}
                         </Control.select>
 
-                        <Control.select model=".spaceId" name="spaceId" validators={{required}}>
+                        <Control.select model=".spaceId" name="spaceId" validators={{required}} onChange={(event => this.updateDeskOptions(event))}>
                             {this.state.spacesOptions.map(space=>
                             <option key={space.id} value={space.id} >{space.num}</option>
                             ).concat(<option key="default" value="">Choose a space</option>)}
@@ -126,7 +138,7 @@ class SearchForm extends Component {
                         <Errors className="text-danger"  model="searchTerm.floorId" messages={{required:'Please select a floor'}} show="touched"> </Errors>
                         <Errors className="text-danger"   model="searchTerm.spaceId" messages={{required:'Please select space'}} show="touched"> </Errors>
 
-                        <Button color="primary" className="success"> <i className="fa fa-search-minus"></i></Button>
+                        <Button color="primary"  className="success" disabled={!this.state.activeSearch}> <i className="fa fa-search-minus"></i></Button>
                     </Form>
 <hr/>
                     <SearchResult  found={this.state.displayResult}

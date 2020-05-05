@@ -131,9 +131,359 @@
       "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
       "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
       "start": "2020-05-02T21:06:22.533Z",
-      "end": null,
+      "end": "2020-05-03T15:04:36.336Z",
       "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
       "id": 3
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-03T15:11:40.197Z",
+      "end": "2020-05-03T15:24:31.724Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 4
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-03T15:42:11.126Z",
+      "end": "2020-05-03T15:51:51.646Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 5
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T12:35:07.847Z",
+      "end": "2020-05-05T12:39:31.192Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 6
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T12:39:50.034Z",
+      "end": "2020-05-05T12:41:19.608Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 7
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T12:43:06.879Z",
+      "end": "2020-05-05T12:43:23.957Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 8
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T12:45:07.539Z",
+      "end": "2020-05-05T12:47:57.843Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 9
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T12:50:36.110Z",
+      "end": "2020-05-05T12:55:14.956Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 10
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T12:59:41.363Z",
+      "end": "2020-05-05T13:00:00.551Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 11
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T13:00:43.822Z",
+      "end": "2020-05-05T13:02:06.645Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 12
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T13:04:39.222Z",
+      "end": "2020-05-05T13:05:33.308Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 13
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T13:09:54.077Z",
+      "end": "2020-05-05T13:42:47.542Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 14
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T13:50:17.075Z",
+      "end": "2020-05-05T13:51:16.670Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 15
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T13:53:21.612Z",
+      "end": "2020-05-05T14:02:28.651Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 16
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T14:04:53.258Z",
+      "end": "2020-05-05T14:04:56.277Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 17
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T14:08:00.056Z",
+      "end": "2020-05-05T14:08:05.275Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 18
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T14:08:21.791Z",
+      "end": "2020-05-05T14:08:39.723Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 19
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T14:10:28.378Z",
+      "end": "2020-05-05T14:10:30.948Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 20
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T14:10:56.401Z",
+      "end": "2020-05-05T14:11:04.887Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 21
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0dr",
+      "start": "2020-05-05T14:11:08.383Z",
+      "end": "2020-05-05T14:11:14.660Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 22
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T14:11:28.560Z",
+      "end": "2020-05-05T14:12:22.830Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 23
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T14:13:17.659Z",
+      "end": "2020-05-05T14:14:14.139Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 24
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T14:16:07.167Z",
+      "end": "2020-05-05T14:16:17.498Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 25
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T14:16:34.761Z",
+      "end": "2020-05-05T14:16:48.952Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 26
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T15:34:13.320Z",
+      "end": "2020-05-05T15:35:01.448Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 27
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T15:35:47.760Z",
+      "end": "2020-05-05T15:38:12.701Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 28
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T15:40:18.545Z",
+      "end": "2020-05-05T15:41:46.163Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 29
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T15:42:05.915Z",
+      "end": "2020-05-05T15:42:59.679Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 30
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T15:47:08.645Z",
+      "end": "2020-05-05T15:48:33.202Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 31
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T15:52:03.062Z",
+      "end": "2020-05-05T16:10:21.100Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 32
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T16:12:08.731Z",
+      "end": "2020-05-05T16:13:25.502Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 33
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T16:18:35.681Z",
+      "end": "2020-05-05T16:18:55.697Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 34
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T16:18:57.292Z",
+      "end": "2020-05-05T16:20:00.415Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 35
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T16:20:02.676Z",
+      "end": "2020-05-05T16:20:53.043Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 36
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T16:24:58.151Z",
+      "end": "2020-05-05T16:29:01.052Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 37
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-05T16:30:15.350Z",
+      "end": "2020-05-05T16:30:34.771Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 38
     }
   ],
   "rates": [
@@ -262,6 +612,15 @@
       "userId": "ae735c2c-dc8c-4c8d-b950-e4fbc953cdcd",
       "date": "2020-04-29T22:37:02.401Z",
       "id": 6
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "date": "2020-05-05T17:08:19.399Z",
+      "id": 7
     }
   ],
   "buildings": [

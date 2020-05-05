@@ -1,17 +1,26 @@
-import {ListGroup, ListGroupItem} from "react-bootstrap";
+import {ListGroupItem} from "react-bootstrap";
 import React from "react";
-export default function RenderNotifPop({display, lastSit,lastPref}) {
+
+function Notifs({activeNotifs}){
+    return (activeNotifs.map((notif, idx) =>
+        <ul className="list-group">
+            <li className="list-group-item-success" key={idx}>{notif.type + " "+ notif.nStart} </li>
+        </ul>
+
+    ))
+}
+export default function RenderNotifPop({display, activeNotifs, handleClear}) {
     if (display){
-        return <div>
-            <ListGroup>
-                <SitItem lastSit={lastSit}></SitItem>
-                <PrefItem lastPref={lastPref}></PrefItem>
-            </ListGroup>
-        </div>
+       return (<div onMouseLeave={handleClear}>
+               <Notifs activeNotifs={activeNotifs} />
+               </div>
+
+       );
     }
     else {
-        return <div></div>
+        return (<div></div>);
     }
+
 }
 
 function SitItem({lastSit}) {
@@ -35,5 +44,25 @@ function SitItem({lastSit}) {
             return null;
         }
     }
+
+
+export function RenderBell ({activeNotifs,handleNotif}){
+    if (activeNotifs && activeNotifs.length>0){
+        return(
+            <div>
+                         <span className="badge badge-pill badge-danger"  name="notif"
+                               onClick={handleNotif}>
+                              {activeNotifs.length}
+                             <i className="fa fa-bell"/>
+
+                         </span>
+
+            </div>);
+    }
+    else{
+        return(<div>   <i className="fa fa-bell"></i> </div>);
+
+    }
+};
 
 

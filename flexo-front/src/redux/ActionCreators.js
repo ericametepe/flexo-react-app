@@ -24,7 +24,14 @@ import {
     READ_FAVSFAILED,
     LOADING_REPORTS,
     READ_REPORTS,
-    REPORTS_FAILED, RATE_LOADING, FETCH_RATINGS, DELETE_FAVORITE
+    REPORTS_FAILED,
+    RATE_LOADING,
+    FETCH_RATINGS,
+    DELETE_FAVORITE,
+    READ_NOTIFS,
+    NOTIFS_FAILED,
+    UPDATE_NOTIF,
+    CREATE_NOTIFS
 } from "./ActionTypes";
 import {baseUrl} from "./baseUrl";
 
@@ -215,6 +222,11 @@ export function locateUser() {
     return user;
 }
 
+const addNotif=(response)=>( {
+    type:CREATE_NOTIFS,
+    payload:response
+});
+
 export const postSit = (siteId,floorId,spaceId,deskId) => dispatch => {
     const newSit = {
         siteId: siteId,
@@ -252,7 +264,14 @@ export const postSit = (siteId,floorId,spaceId,deskId) => dispatch => {
             }
         )
         .then(response => response.json())
-        .then(response => dispatch(addSit(response)))
+        .then(response => {
+            dispatch(addSit(response))
+            let newNotif = Object.assign({},response);
+            newNotif.type=ADD_SIT;
+            newNotif.nStart=new Date().toISOString();
+            newNotif.nEnd=null;
+            dispatch(addNotif(newNotif));
+        })
         .catch(error => {
             console.log("post sits", error.message);
             alert("Your seat could not be posted\nError: " + error.message);
@@ -296,7 +315,14 @@ export const releaseSit = (sitting) => dispatch => {
             }
         )
         .then(response => response.json())
-        .then(response => dispatch(updateSitting(response)))
+        .then(response => {
+            dispatch(updateSitting(response));
+            let newNotif = Object.assign({},response);
+            newNotif.type=UPDATE_SITTING;
+            newNotif.nStart=new Date().toISOString();
+            newNotif.nEnd=null;
+            dispatch(addNotif(newNotif));
+        })
         .catch(error => {
             console.log("put sits", error.message);
             alert("Your seat could not be updated: " + error.message);
@@ -621,6 +647,57 @@ export const fetchRatings = ()=> dispatch =>{
         .then(response => response.json())
         .then(data => dispatch(readRatings(data)))
         .catch(error => dispatch(readReportsFailed(error.message)));
+};
+
+const  readNotifs=() =>({
+   type:READ_NOTIFS
+});
+
+const  readNotifsFailed=(message)=> ({
+    type:NOTIFS_FAILED,
+    payload:message
+});
+
+export const fetchNotifs=()=>dispatch=>{
+    dispatch(readNotifs());
+}
+
+
+export const fetchNotifsOld=()=>dispatch=>{
+
+    return fetch(baseUrl + "notifs")
+        .then(
+            response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    let error = new Error(
+                        "Error " + response.status + ": " + response.statusText
+                    );
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                let errmess = new Error(error.message);
+                throw errmess;
+            }
+        )
+        .then(response => response.json())
+        .then(data => dispatch(readNotifs(data)))
+        .catch(error => dispatch(readNotifsFailed(error.message)));
+};
+
+const  updateNotif=(response) =>( {
+    type:UPDATE_NOTIF,
+    payload:response
+});
+
+export const ackNotifs = (notifs) => dispatch => {
+    notifs.forEach(upNotif=>{
+        upNotif.nEnd=new Date().toISOString();
+        dispatch(updateNotif(upNotif));
+    })
 };
 
 

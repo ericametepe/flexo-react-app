@@ -11,6 +11,7 @@ import {Sits} from "./Sit";
 import {Rating} from "./Rating";
 import {Reports} from "./Report";
 import {Favorites} from "./Favorite";
+import {Notifs} from "./Notifs";
 
 
 
@@ -39,6 +40,7 @@ export const  ConfigureStore= () =>{
             ratings:Rating,
             reports:Reports,
             favorites:Favorites,
+            notifs:Notifs,
             ...createForms({searchTerm: initialTerm}),
             ...createForms({rating: initRate}),
             ...createForms({reporting: initReport}),

@@ -7,9 +7,10 @@ import Pref from "./PrefComponent";
 import Act from "./ActComponent";
 import Notif from "./NotifComponent";
 import {
+    ackNotifs,
     addFav, deleteFav,
     fetchDesks, fetchFavorites,
-    fetchFloors, fetchRatings, fetchReports,
+    fetchFloors, fetchNotifs, fetchRatings, fetchReports,
     fetchSites,
     fetchSits,
     fetchSpaces, locateUser,
@@ -22,7 +23,7 @@ import {fullDeskInfo, locateElemById, locateUserActions, locateUserLastAction} f
 import Site from "./SiteComponent";
 import Floor from "./FloorComponent";
 import Space from "./SpaceComponent";
-import DeskItem from "./DeskItemComponent";
+
 
 
 
@@ -35,9 +36,11 @@ export const mapStateToProps = state => {
         sits:   state.sits,
         favorites: state.favorites,
         reports:state.reports,
-        ratings:state.ratings
+        ratings:state.ratings,
+        notifs:state.notifs
     };
 };
+
 
 export const mapDispatchToProps = dispatch => ({
     fetchSites:  () => dispatch(fetchSites()),
@@ -53,7 +56,9 @@ export const mapDispatchToProps = dispatch => ({
      deleteFav:(idFav)=>dispatch(deleteFav(idFav)),
      fetchFavorites: () => dispatch(fetchFavorites()),
      fetchReports : () => dispatch(fetchReports()),
-     fetchRatings:()=>dispatch(fetchRatings())
+     fetchRatings:()=>dispatch(fetchRatings()),
+     fetchNotifs:()=>dispatch(fetchNotifs()),
+     ackNotifs:(notifs)=>dispatch(ackNotifs(notifs))
 
 });
 
@@ -76,6 +81,7 @@ class Main extends Component{
         this.props.fetchFavorites();
         this.props.fetchReports();
         this.props.fetchRatings();
+        this.props.fetchNotifs();
     }
 
     render() {
@@ -174,17 +180,25 @@ class Main extends Component{
                           rate={this.props.rate}
                           report={this.props.report}
                           addFav={this.props.addFav}
-                         favorites={locateUserActions(this.props.favorites.favorites,currentUser)}
+                          favorites={locateUserActions(this.props.favorites.favorites,currentUser)}
             />);
     };
 
         const UserHeader = ()=> {
+            let displayNotif=false;
+            let activeNotifs=[];
+            if (this.props.notifs.notifs && this.props.notifs.notifs.length){
+               displayNotif= this.props.notifs.notifs.filter(not=>not.userId.localeCompare(currentUser)===0).some(not=>not.nEnd===null);
+               activeNotifs= this.props.notifs.notifs.filter(not=>not.userId.localeCompare(currentUser)===0 && not.nEnd===null);
+            }
 
-           let lastSit = locateUserLastAction(this.props.sits.sits,currentUser);
-           let lastPref = locateUserLastAction(this.props.favorites.favorites,currentUser);
+          return(<Header
+              displayNotif={displayNotif}
+              notifs={this.props.notifs.notifs}
+              ackNotifs={this.props.ackNotifs}
+              activeNotifs={activeNotifs}
 
-          return(<Header lastSit={lastSit}
-                         lastPref={lastPref}/>);
+          />);
         };
 
         const SiteWithFloors=({match})=> {

@@ -9,7 +9,7 @@ import {
     Badge,
 } from 'react-bootstrap';
 import {NavLink} from "react-router-dom";
-import RenderNotifPop from "./NotificationPopComponent";
+import RenderNotifPop, {RenderBell} from "./NotificationPopComponent";
 
 
 
@@ -18,19 +18,29 @@ class Header extends Component{
 
     constructor(props) {
         super(props);
+
         this.state={
-            displayNotif:false,
-            isPres:false
+            isPres:false,
+            displayNotifPop:false
         };
         this.handleDisplayNotif=this.handleDisplayNotif.bind(this);
+        this.handleUpdateNotif=this.handleUpdateNotif.bind(this);
+
+    }
+
+    handleUpdateNotif(event){
+        console.log(" target "+event.target);
+        this.props.ackNotifs(this.props.activeNotifs);
     }
 
     handleDisplayNotif(event) {
+        console.log(" target "+event.target);
         this.setState({
-            displayNot:!this.state.displayNot,
-            isPres:false
+            displayNotifPop:!this.state.displayNotifPop
         });
-        console.log(" ==="+event.target);
+        console.log(" displayNotifPop  "+this.state.displayNotifPop);
+        event.preventDefault();
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -68,10 +78,13 @@ class Header extends Component{
                 </NavItem>
 
             </Nav>
-                 <Badge variant={this.state.isPres?"danger":"light"}  name="notif" onClick={(event)=> this.handleDisplayNotif(event)} draggable="true">
-                     <i className="fa fa-bell"/>
-                     <RenderNotifPop display={this.state.displayNot} lastSit={this.props.lastSit} lastPref={this.props.lastPref} />
-                 </Badge>
+
+                 <RenderBell activeNotifs={this.props.activeNotifs} handleNotif={(event) => this.handleDisplayNotif(event)}/>
+                 <RenderNotifPop display={this.state.displayNotifPop} activeNotifs={this.props.activeNotifs} handleClear={(event)=>this.handleUpdateNotif(event)} />
+
+
+
+
             <Form inline>
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                 <Button variant="outline-primary">Search</Button>
