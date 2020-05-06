@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {chunk} from "./SiteListComponent";
 import DeskItem from "./DeskItemComponent";
-import {findBusyDeskBy, fullDeskInfo, isBusy, locateElemById} from "./FlexoUtils";
+import {fullDeskInfo, isBusy, locateElemById} from "./FlexoUtils";
 import Breadcrumb from "reactstrap/es/Breadcrumb";
 import {BreadcrumbItem} from "reactstrap";
 import {Link} from "react-router-dom";
@@ -18,8 +18,8 @@ class Space extends Component{
            (
             chunkedDesks.map((chunk, index) =>
                 <div className="row" key={index}>
+                    {chunk.filter(d=>d && d!==null).map(desk =>
 
-                    {chunk.map(desk =>
                         <div className="col-sm" key={desk.id}>
                                 <i className="fa fa-map-marker"/>
                             <div className={isBusy(this.props.sittings,desk.id)?"text-warning":"text-success"}>
@@ -69,8 +69,8 @@ class Space extends Component{
 }
 
 export function DeskStatusCounter(desks,sittings) {
-    let busyCount= desks.filter(d=>findBusyDeskBy(sittings,d.id)!==null).length;
-    let freeCount= desks.filter(d=>findBusyDeskBy(sittings,d.id)===undefined||findBusyDeskBy(sittings,d.id)===null).length;
+    let busyCount= desks.filter(d=>isBusy(sittings,d.id)).filter(t=>t).length;
+    let freeCount= desks.filter(d=>!isBusy(sittings,d.id)).filter(t=>t).length;
     let total= desks.length;
 
     return  {busyCount,freeCount,total};
@@ -78,6 +78,7 @@ export function DeskStatusCounter(desks,sittings) {
 
 export function RenderCount({desks, sittings}) {
     let {busyCount,freeCount,total} = DeskStatusCounter(desks, sittings);
+    if (total && total>0){
     return (
         <div className="col-lg-pull-12">
             <span className="badge-success">{" Free desk :"+freeCount}</span>
@@ -86,6 +87,13 @@ export function RenderCount({desks, sittings}) {
             <span className="badge-info">{" Total :"+total}</span>
 
         </div>)
+    }
+    else {
+        return (<div className="col-lg-pull-12">
+            <span className="badge-info">{" Total :"+total}</span>
+
+        </div>);
+    }
 }
 
 

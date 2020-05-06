@@ -136,8 +136,6 @@ class DeskItem extends Component{
             alert( "You are not allowed to release this desk"+JSON.stringify(this.props.sittings));
         }
 
-        event.preventDefault();
-        event.persist();
         }
 
 
@@ -158,7 +156,7 @@ class DeskItem extends Component{
                     </Control.select>
                     <label>Your comment</label>
                     <Control.text model=".comment"></Control.text>
-                    <Button type="submit" className="btn-primary"> Submit Rate </Button>
+                    <button type="button" className="btn-primary"> Submit Rate </button>
                 </Form>
             </div>);
          }

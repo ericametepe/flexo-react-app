@@ -484,6 +484,87 @@
       "end": "2020-05-05T16:30:34.771Z",
       "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
       "id": 38
+    },
+    {
+      "deskId": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0dn",
+      "start": "2020-05-05T17:16:49.088Z",
+      "end": "2020-05-05T17:17:25.663Z",
+      "userId": "ae735c2c-dc8c-4c8d-b950-e4fbc953cdcd",
+      "id": 39
+    },
+    {
+      "deskId": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0dn",
+      "start": "2020-05-05T17:17:29.341Z",
+      "end": "2020-05-05T17:17:32.064Z",
+      "userId": "ae735c2c-dc8c-4c8d-b950-e4fbc953cdcd",
+      "id": 40
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-06T00:54:03.822Z",
+      "end": "2020-05-06T00:55:49.903Z",
+      "userId": "ae735c2c-dc8c-4c8d-b950-e4fbc953cdcd",
+      "id": 41
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0dr",
+      "start": "2020-05-06T00:56:20.366Z",
+      "end": "2020-05-06T00:56:45.759Z",
+      "userId": "ae735c2c-dc8c-4c8d-b950-e4fbc953cdcd",
+      "id": 42
+    },
+    {
+      "deskId": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0dn",
+      "start": "2020-05-06T03:36:48.548Z",
+      "end": "2020-05-06T03:36:59.091Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 43
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc2",
+      "spaceId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc2r",
+      "deskId": "42878c49-3e6d-4b6c-9965-f5299fc390adm",
+      "start": "2020-05-06T03:53:19.948Z",
+      "end": "2020-05-06T03:53:50.018Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 44
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-06T03:57:55.442Z",
+      "end": "2020-05-06T09:34:30.831Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 45
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-06T09:35:57.942Z",
+      "end": "2020-05-06T09:37:51.083Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 46
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-06T09:38:07.847Z",
+      "end": null,
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 47
     }
   ],
   "rates": [
@@ -521,6 +602,13 @@
       "date": "2020-04-29T21:26:10.158Z",
       "userId": "ae735c2c-dc8c-4c8d-b950-e4fbc953cdcd",
       "id": 5
+    },
+    {
+      "rate": "2",
+      "comment": "No FT no comment",
+      "date": "2020-05-06T09:32:51.377Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 6
     }
   ],
   "reports": [
@@ -621,6 +709,24 @@
       "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
       "date": "2020-05-05T17:08:19.399Z",
       "id": 7
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0dr",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "date": "2020-05-06T03:35:26.294Z",
+      "id": 8
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0dn",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "date": "2020-05-06T09:33:38.354Z",
+      "id": 9
     }
   ],
   "buildings": [

@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {chunk, freeDeskCount} from "./SiteListComponent";
+import {chunk} from "./SiteListComponent";
 import {Link} from "react-router-dom";
 import {RenderCount} from "./SpaceComponent";
 import {findDesksBySpaceId} from "./FloorComponent";
@@ -8,7 +8,7 @@ import {BreadcrumbItem} from "reactstrap";
 import {locateElemById} from "./FlexoUtils";
 
 export function findDesksByFloorId(desks,spaces, floorId ){
-    let myspaces = spaces.filter(sp=>sp.floorId.localeCompare(floorId));
+    let myspaces = spaces.filter(sp=>sp.floorId.localeCompare(floorId)===0);
     let result =[];
     myspaces.forEach(sp=>{
         let mydesk = findDesksBySpaceId(desks,sp.id);

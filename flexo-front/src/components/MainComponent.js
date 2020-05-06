@@ -158,10 +158,10 @@ class Main extends Component{
                 let {num, image}= desk;
                 lastsit.deskNum=num;
                 lastsit.image=image;
-                lastsit.floorNum=floor.num;
-                lastsit.spaceNum=space.num;
-                lastsit.siteName=site.name;
-                lastsit.adresse=site.adresse;
+                lastsit.floorNum=floor?.num;
+                lastsit.spaceNum=space?.num;
+                lastsit.siteName=site?.name;
+                lastsit.adresse=site?.adresse;
 
             }
 
@@ -187,6 +187,7 @@ class Main extends Component{
         const UserHeader = ()=> {
             let displayNotif=false;
             let activeNotifs=[];
+
             if (this.props.notifs.notifs && this.props.notifs.notifs.length){
                displayNotif= this.props.notifs.notifs.filter(not=>not.userId.localeCompare(currentUser)===0).some(not=>not.nEnd===null);
                activeNotifs= this.props.notifs.notifs.filter(not=>not.userId.localeCompare(currentUser)===0 && not.nEnd===null);
