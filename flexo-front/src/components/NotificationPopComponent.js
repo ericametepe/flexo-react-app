@@ -2,9 +2,9 @@ import {ListGroupItem} from "react-bootstrap";
 import React from "react";
 
 function Notifs({activeNotifs}){
-    return (activeNotifs.map((notif, idx) =>
+    return (activeNotifs.map((notif) =>
         <ul className="list-group">
-            <li className="list-group-item-success" key={idx}>{notif.type + " "+ notif.nStart} </li>
+            <li className="list-group-item-success" key={notif.id}>{notif.type.toLowerCase() + " "+ notif.nStart} </li>
         </ul>
 
     ))
@@ -49,7 +49,7 @@ function SitItem({lastSit}) {
 export function RenderBell ({activeNotifs,handleNotif}){
     if (activeNotifs && activeNotifs.length>0){
         return(
-            <div>
+            <div> <span>Activities</span>
                          <span className="badge badge-pill badge-danger"  name="notif"
                                onClick={handleNotif}>
                               {activeNotifs.length}
@@ -60,7 +60,7 @@ export function RenderBell ({activeNotifs,handleNotif}){
             </div>);
     }
     else{
-        return(<div>   <i className="fa fa-bell"></i> </div>);
+        return(<div> <span>Activities</span>  <i className="fa fa-bell"> </i> </div>);
 
     }
 };

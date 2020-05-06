@@ -5,7 +5,8 @@ import {
 import {RenderCount} from "./SpaceComponent";
 import {findDesksByFloorId} from "./SiteComponent";
 import Breadcrumb from "reactstrap/es/Breadcrumb";
-import {BreadcrumbItem} from "reactstrap";
+import {BreadcrumbItem, Card, CardBody, CardImg, CardText, CardTitle} from "reactstrap";
+import {baseUrl} from "../redux/baseUrl";
 
 
 function findDesksBySiteId(sites, floors, spaces, desks, siteId) {
@@ -43,6 +44,10 @@ export default class SiteList extends Component {
                     <div className="badge-pill">
                         <RenderCount desks={findDesksBySiteId(this.props.sites,this.props.floors,this.props.spaces,this.props.desks, site.id)}
                                      sittings={this.props.sittings}/>
+                    </div>
+
+                    <div className="ui small images">
+                        <img src={baseUrl+site.image}/>
                     </div>
 
             </div>)}

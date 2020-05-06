@@ -5,42 +5,24 @@
       "name": "Enim Inc.",
       "adresse": "P.O. Box 767, 5899 Magna. Avenue",
       "img": "Nulla Tempor PC",
-      "geocords": "-19.03592, -26.49641"
+      "geocords": "-19.03592, -26.49641",
+      "image": "FE42EC9C-F216-9ED1-77F9-A879CD529481.jpg"
     },
     {
       "id": "808BD9B1-5205-C0B6-2921-92EB3B7A1A88",
       "name": "Massa Ltd",
       "adresse": "447-3851 Sem St.",
       "img": "Euismod Mauris Eu Inc.",
-      "geocords": "-10.57818, 53.78292"
+      "geocords": "-10.57818, 53.78292",
+      "image": "808BD9B1-5205-C0B6-2921-92EB3B7A1A88.jpg"
     },
     {
       "id": "C66371B5-3247-76C7-C6A4-6556AD53DD06",
       "name": "Consequat Institute",
       "adresse": "899-1831 Imperdiet Rd.",
       "img": "Vel Associates",
-      "geocords": "-5.81632, 2.44734"
-    },
-    {
-      "id": "B5BEC3C3-C44C-5210-A96B-152B3AC4A877",
-      "name": "Morbi Quis Urna Inc.",
-      "adresse": "716-6712 Cursus, St.",
-      "img": "Vel Consulting",
-      "geocords": "-80.57729, 127.85563"
-    },
-    {
-      "id": "5A6AD1E8-B59D-3E18-5FF3-C847FC5837E6",
-      "name": "Est Ac Facilisis Corp.",
-      "adresse": "Ap #476-3459 Ipsum Ave",
-      "img": "Est Incorporated",
-      "geocords": "-15.90082, -67.15903"
-    },
-    {
-      "id": "C6E23C11-338E-DAE7-3840-025624E180DF",
-      "name": "Elit Consulting",
-      "adresse": "167-1581 Facilisi. Avenue",
-      "img": "Diam LLC",
-      "geocords": "-82.02353, -3.77355"
+      "geocords": "-5.81632, 2.44734",
+      "image": "C66371B5-3247-76C7-C6A4-6556AD53DD06.jpg"
     }
   ],
   "floors": [
@@ -58,6 +40,36 @@
       "id": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0dd",
       "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
       "num": "F3"
+    },
+    {
+      "id": "42878c49-3e6d-4b6c-9965-f5299fc390adp1",
+      "siteId": "808BD9B1-5205-C0B6-2921-92EB3B7A1A88",
+      "num": "S2F1"
+    },
+    {
+      "id": "4dd90045-c50e-47e7-95a0-82fb92eb7cc2",
+      "siteId": "808BD9B1-5205-C0B6-2921-92EB3B7A1A88",
+      "num": "S2F2"
+    },
+    {
+      "id": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0ddx",
+      "siteId": "808BD9B1-5205-C0B6-2921-92EB3B7A1A88",
+      "num": "S2F3"
+    },
+    {
+      "id": "42878c49-3e6d-4b6c-9965-f5299fc390adp2",
+      "siteId": "C66371B5-3247-76C7-C6A4-6556AD53DD06",
+      "num": "S3F1"
+    },
+    {
+      "id": "4dd90045-c50e-47e7-95a0-82fb92eb7cc2",
+      "siteId": "C66371B5-3247-76C7-C6A4-6556AD53DD06",
+      "num": "S3F2"
+    },
+    {
+      "id": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0dd3",
+      "siteId": "C66371B5-3247-76C7-C6A4-6556AD53DD06",
+      "num": "S3F3"
     }
   ],
   "spaces": [
@@ -65,6 +77,21 @@
       "id": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
       "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
       "num": "SPACE1"
+    },
+    {
+      "id": "42878c49-3e6d-4b6c-9965-f5299fc390ad10",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp2",
+      "num": "SPACE-P4"
+    },
+    {
+      "id": "42878c49-3e6d-4b6c-9965-f5299fc390ad0",
+      "floorId": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0ddx",
+      "num": "S2F3-SPACE1"
+    },
+    {
+      "id": "42878c49-3e6d-4b6c-9965-f5299fc390ad1",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp1",
+      "num": "S2F1-SPACE1"
     },
     {
       "id": "4dd90045-c50e-47e7-95a0-82fb92eb7cc2r",
@@ -77,9 +104,19 @@
       "num": "WorkSPACE13"
     },
     {
-      "id": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0ddx",
+      "id": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0ddx1",
       "floorId": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0dd",
+      "num": "SPACE150"
+    },
+    {
+      "id": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0ddxy",
+      "floorId": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0dd3",
       "num": "SPACE15"
+    },
+    {
+      "id": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0ddx3",
+      "floorId": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0dd3",
+      "num": "SPACE1A3"
     }
   ],
   "desks": [
@@ -87,6 +124,36 @@
       "id": "42878c49-3e6d-4b6c-9965-f5299fc390adm",
       "spaceId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc2r",
       "num": "DESK1",
+      "image": "42878c49-3e6d-4b6c-9965-f5299fc390adm.png"
+    },
+    {
+      "id": "42878c49-3e6d-4b6c-9965-f5299fc390adm9",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad10",
+      "num": "DESK1",
+      "image": "42878c49-3e6d-4b6c-9965-f5299fc390adm.png"
+    },
+    {
+      "id": "42878c49-3e6d-4b6c-9965-f5299fc390adm0",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad1",
+      "num": "S2F1-SPACE1-DESK1",
+      "image": "42878c49-3e6d-4b6c-9965-f5299fc390adm.png"
+    },
+    {
+      "id": "42878c49-3e6d-4b6c-9965-f5299fc390adm0",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad0",
+      "num": "DESK1",
+      "image": "42878c49-3e6d-4b6c-9965-f5299fc390adm.png"
+    },
+    {
+      "id": "42878c49-3e6d-4b6c-9965-f5299fc390admr",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad0",
+      "num": "DESK111",
+      "image": "42878c49-3e6d-4b6c-9965-f5299fc390adm.png"
+    },
+    {
+      "id": "42878c49-3e6d-4b6c-9965-f5299fc390adm",
+      "spaceId": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0ddx1",
+      "num": "DESK-S150",
       "image": "42878c49-3e6d-4b6c-9965-f5299fc390adm.png"
     },
     {
@@ -562,9 +629,69 @@
       "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
       "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
       "start": "2020-05-06T09:38:07.847Z",
-      "end": null,
+      "end": "2020-05-06T09:53:32.831Z",
       "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
       "id": 47
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-06T10:00:59.979Z",
+      "end": "2020-05-06T10:13:23.411Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 48
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-06T10:17:50.074Z",
+      "end": "2020-05-06T10:19:14.743Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 49
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-06T12:41:47.623Z",
+      "end": "2020-05-06T14:37:04.272Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 50
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-06T14:39:45.617Z",
+      "end": "2020-05-06T15:02:35.690Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 51
+    },
+    {
+      "siteId": "C66371B5-3247-76C7-C6A4-6556AD53DD06",
+      "floorId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc2",
+      "spaceId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc2r",
+      "deskId": "42878c49-3e6d-4b6c-9965-f5299fc390adm",
+      "start": "2020-05-06T15:35:22.371Z",
+      "end": "2020-05-06T15:48:28.635Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 52
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "start": "2020-05-06T22:11:27.679Z",
+      "end": "2020-05-06T22:46:48.653Z",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "id": 53
     }
   ],
   "rates": [
@@ -680,6 +807,15 @@
       "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
       "date": "2020-04-28T16:31:07.206Z",
       "id": 20
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "date": "2020-05-06T12:38:32.718Z",
+      "id": 21
     }
   ],
   "favorites": [
@@ -718,15 +854,6 @@
       "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
       "date": "2020-05-06T03:35:26.294Z",
       "id": 8
-    },
-    {
-      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
-      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
-      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
-      "deskId": "0af5dfef-cc8d-4bd9-80ba-0e70fa6bd0dn",
-      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
-      "date": "2020-05-06T09:33:38.354Z",
-      "id": 9
     }
   ],
   "buildings": [

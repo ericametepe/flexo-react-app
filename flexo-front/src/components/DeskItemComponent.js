@@ -4,6 +4,7 @@ import {Button, ListGroup, ListGroupItem} from "react-bootstrap";
 import {Control, Form} from "react-redux-form";
 import {ScanForm} from "./ScanFormComponent";
 import RateForm from "./RateFormComponent";
+import {Link} from "react-router-dom";
 const ISSUES_NUM =["Technical issue","Desk in use","Not Clean","Other","Not functional"];
 
 export const isBusy=(sittings, deskId)=> sittings.some(sit=> sit.deskId.localeCompare(deskId)===0 && sit.end===null && sit.start!==null);
@@ -106,7 +107,10 @@ class DeskItem extends Component{
         );
 
         if (idx!==-1){
-           alert(`U cannot sit : you have already a desk in use: ${JSON.stringify(sittings[idx])}`);
+            let sit = sittings[idx];
+            let url=`/sites/${sit.siteId}/floors/${sit.floorId}/spaces/${sit.spaceId}/desks`;
+           alert(`U cannot sit : you have already a desk in use check it at this tab: Activities ` );
+
         } else{
         this.props.postSit(siteId,floorId,spaceId,deskId);
         }
@@ -117,12 +121,8 @@ class DeskItem extends Component{
     }
 
     freeDesk(event) {
-        let  {siteId,floorId,spaceId,deskId, sittings}=this.props;
+        let  {deskId}=this.props;
         let userId=localStorage.userId;
-
-        console.log(`${event.target} : free Desk :${deskId} of space ${this.props.siteId}
-         of floor ${this.props.floorId} 
-         of site ${this.props.spaceId} userId:${userId}`);
 
         let sit = this.props.sittings.find(s =>
              s.userId.localeCompare(userId)===0
@@ -133,15 +133,16 @@ class DeskItem extends Component{
         if (sit && sit.id){
             this.props.releaseSit(sit);
         } else {
-            alert( "You are not allowed to release this desk"+JSON.stringify(this.props.sittings));
+            alert( "You are not allowed to release this desk check yours at tab : Activities");
         }
+        event.preventDefault();
 
         }
 
 
     render() {
 
-        let  {siteId,floorId,spaceId,deskId, sittings}=this.props;
+        let  {deskId, sittings}=this.props;
         let userId =localStorage.userId;
 
         const formRate=()=> {
@@ -177,25 +178,36 @@ class DeskItem extends Component{
 
                 <ListGroup horizontal variant="info" >
                    <ListGroupItem>
-                    <form name={isBusyTest?'leave':'sit'}>
-                    <button  type="button"  className="btn btn-primary" onClick={isBusyTest? event =>  this.freeDesk(event):event=>this.useDesk(event)}>
-                          {isBusy(sittings, deskId)?'Leave':'Sit'}
-                    </button>
+                    <form name={isBusyTest?'leave':'sit'} onClick={isBusyTest? event =>  this.freeDesk(event):event=>this.useDesk(event)}>
+                    <div   className="ui primary button" >
+                          {isBusy(sittings, deskId)?'Exit':'Sit'}
+                    </div>
                     </form>
                   </ListGroupItem>
                     <ListGroupItem>
-                    <button type="button" className="btn btn-primary"  onClick={event => this.handleDisplayRate(event)}>Rate</button>
+                    <button type="button" className="ui yellow button"  onClick={event => this.handleDisplayRate(event)}>
+                        <i className="star icon">   </i>
+                    </button>
                      <RateForm displayRate={this.state.displayRate} handleSubmitRate={this.handleSubmitRate}></RateForm>
                      </ListGroupItem>
+
                     <ListGroupItem>
-                        <button type="button" className="btn btn-primary" onClick={this.handleDisplayScan}>Scan</button>
+                        <div  className="ui black button" onClick={this.handleDisplayScan}>
+                        <i className="barcode icon">Scan</i>
+                        </div>
+
                         <ScanForm display={this.state.displayScan} image={this.props.image} num={this.props.num}></ScanForm>
                     </ListGroupItem>
+
                     <ListGroupItem>
-                        <button type="button" className="btn btn-primary" onClick={this.handleAddFavorite}  disabled={isFav}>{isFav?'Your fav':'Add as Fav'}</button>
+                        <div  className="ui pink button" onClick={this.handleAddFavorite}  disabled={isFav}>
+                            <i className="heart icon"></i>
+                        </div>
                     </ListGroupItem>
                     <ListGroupItem>
-                        <button type="button" className="btn btn-primary" onClick={event => this.handledisplayReport(event)}>Report</button>
+                        <div className="ui red button" onClick={event => this.handledisplayReport(event)}>
+                            <i className="flag icon"></i>
+                        </div>
                         <ReportForm displayReport={this.state.displayReport}  handleSubmitReport={this.handleSubmitReport}></ReportForm>
                    </ListGroupItem>
                 </ListGroup>

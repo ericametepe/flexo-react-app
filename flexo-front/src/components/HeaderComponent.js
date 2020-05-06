@@ -10,6 +10,7 @@ import {
 } from 'react-bootstrap';
 import {NavLink} from "react-router-dom";
 import RenderNotifPop, {RenderBell} from "./NotificationPopComponent";
+import {baseUrl} from "../redux/baseUrl";
 
 
 
@@ -64,7 +65,7 @@ class Header extends Component{
              <Navbar bg="light" variant="light">
             <Navbar.Brand>
                 <NavLink className="nav-link" to="/home">
-                <img src="assets/logo.png"    alt='Flexoffice' />
+                <img src={baseUrl+"logo.png"}    alt='Flexoffice' />
                 </NavLink>
             </Navbar.Brand>
             <Nav className="mr-auto">
@@ -72,17 +73,15 @@ class Header extends Component{
                 <NavLink className="nav-link" to="/prefs">Preferences</NavLink>
                 </NavItem>
                 <NavItem>
-                <NavLink className="nav-link" to="/acts">Activities</NavLink>
+                <NavLink className="nav-link" to="/acts">
+                    <RenderBell activeNotifs={this.props.activeNotifs} handleNotif={(event) => this.handleDisplayNotif(event)}/>
+                    <RenderNotifPop display={this.state.displayNotifPop} activeNotifs={this.props.activeNotifs} handleClear={(event)=>this.handleUpdateNotif(event)} />
+                </NavLink>
                 </NavItem>
                 <NavItem>
                 </NavItem>
 
             </Nav>
-
-                 <RenderBell activeNotifs={this.props.activeNotifs} handleNotif={(event) => this.handleDisplayNotif(event)}/>
-                 <RenderNotifPop display={this.state.displayNotifPop} activeNotifs={this.props.activeNotifs} handleClear={(event)=>this.handleUpdateNotif(event)} />
-
-
 
 
             <Form inline>

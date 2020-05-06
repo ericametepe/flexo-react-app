@@ -4,6 +4,7 @@ import DeskItem from "./DeskItemComponent";
 import {Alert, BreadcrumbItem} from "reactstrap";
 import Breadcrumb from "reactstrap/es/Breadcrumb";
 import {Link} from "react-router-dom";
+import PrefTab from "./PrefRecTab";
 
 
 
@@ -80,7 +81,6 @@ class Pref extends Component{
              }
 
          };
-
                  return(
                      <div className="container">
                          <div className="row">

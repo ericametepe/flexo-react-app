@@ -111,7 +111,9 @@ class SearchForm extends Component {
                     {this.props.err} </div> <p> {this.props.err}</p> </div>);
         } else {
             return (
-                <div>
+
+                <div className="ui center aligned container">
+                    <p>Search your desk</p>
                     <Form  model="searchTerm" onSubmit={(values)=>this.handleSubmit(values)} >
                         <Control.select model=".siteId" name="siteId" onChange={(event)=>this.updateFloorOptions(event)}
                                validators={{required}}           >
