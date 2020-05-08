@@ -12,7 +12,7 @@ class Space extends Component{
     }
 
     render(){
-        const chunkedDesks = chunk(this.props.desks,3);
+        const chunkedDesks = chunk(this.props.desks,1);
         const Counter=()=> <RenderCount sittings={this.props.sittings} desks={this.props.desks}/>;
         const RowDesk=()=>
            (

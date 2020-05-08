@@ -76,7 +76,6 @@ class DeskItem extends Component{
     handleSubmitReport(values){
         let  {siteId,floorId,spaceId,deskId}=this.props;
          values = {siteId,floorId,spaceId,deskId};
-        alert(` form data:${JSON.stringify(values)}props=${JSON.stringify(this.props)}`);
         this.props.report(values);
     }
 
@@ -185,7 +184,7 @@ class DeskItem extends Component{
                          {this.props.siteName}
                     </Link>
                 </ListGroup>
-
+to
                 <div className="container" name="desk">
                     <div className="row">
                    <div className="col" name="sit">
@@ -206,15 +205,14 @@ class DeskItem extends Component{
                      <RateForm displayRate={this.state.displayRate} handleSubmitRate={this.handleSubmitRate}/>
                     </div>
 
-                        <div className="col">
+                  <div className="col">
                     <div name="scan">
                         <div  className="ui black button" onClick={this.handleDisplayScan}>
                         <i className="barcode icon">Scan</i>
                         </div>
-
                         <ScanForm display={this.state.displayScan} image={this.props.image} num={this.props.num}/>
                     </div>
-                        </div>
+                  </div>
 
                         <div className="col">
                         <button  className="ui pink button" onClick={this.handleAddFavorite}  disabled={isFav}>
