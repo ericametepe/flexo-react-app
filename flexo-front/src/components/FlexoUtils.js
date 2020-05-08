@@ -31,6 +31,19 @@ function DeskStatusCounter(desks,sittings) {
     let freeCount= desks.filter(d=>!isBusy(sittings,d)).length;
     return  {busyCount,freeCount};
 }
+const reducerAdd = (accumulator, currentValue) => (accumulator + currentValue);
+export const AVG_RATINGS = (ratings) => formatNumber(ratings &&ratings.length && ratings.length>0?
+    ratings.map(r => parseInt(r.rate,0)).reduce((a, b) => (a + b ),0) / ratings.length:0);
+export const formatNumber= (value)=>  new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 2}).format(value);
+export const count_reports=(reports, userId)=>
+    formatNumber((reports && reports.length)? (reports.filter(r=>r.userId.localeCompare(userId)===0)).length:0,2);
+export const count_ratings=(ratings, userId)=>
+    formatNumber((ratings && ratings.length)? (ratings.filter(r=>r.userId.localeCompare(userId)===0)).length:0,2);
+
+
+
+
+
 
 
 

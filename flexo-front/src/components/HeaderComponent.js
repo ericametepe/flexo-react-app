@@ -2,15 +2,17 @@ import React, {Component} from "react";
 import {
     Navbar,
     Nav,
-    Form,
-    FormControl,
-    Button,
     NavItem,
-    Badge,
+
 } from 'react-bootstrap';
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import RenderNotifPop, {RenderBell} from "./NotificationPopComponent";
 import {baseUrl} from "../redux/baseUrl";
+import {Control, LocalForm} from "react-redux-form";
+import {Row, Col} from "reactstrap";
+import FreeSearchResultBox from "./FreeSearchResultBox";
+
+
 
 
 
@@ -22,10 +24,49 @@ class Header extends Component{
 
         this.state={
             isPres:false,
-            displayNotifPop:false
+            displayNotifPop:false,
+            keyword:"",
+            resultSearch:[],
+            displayBox:false
         };
         this.handleDisplayNotif=this.handleDisplayNotif.bind(this);
         this.handleUpdateNotif=this.handleUpdateNotif.bind(this);
+        this.handleSubmitSearch=this.handleSubmitSearch.bind(this);
+    }
+
+
+
+    handleSubmitSearch(values){
+        let {word}=values;
+        if (word){
+            const splitWord = word?.split(",");
+            const siteName= splitWord[0]?.trim();
+            const floorNum= splitWord[1]?.trim();
+            let sites = this.props.sites.filter(s=>s.name.toLowerCase().search(siteName.toLowerCase())!==-1);
+            let result=[];
+
+            sites.forEach((site)=>{
+                let fflors = this.props.floors.filter((floor)=>floor.siteId.localeCompare(site.id)===0);
+                console.log("fflors "+JSON.stringify(fflors));
+                let resultItem={};
+                resultItem.siteId=site.id;
+                resultItem.siteName=site.name
+                resultItem.floors=fflors?.filter(f=>f.num.search(floorNum)!==-1);
+                result.push(resultItem);
+            });
+
+            this.setState({
+                "freeSearch":result.length>0,
+                "resultSearch":result,
+                "keyword" : splitWord.join(","),
+                "displayBox":true
+            });
+            result=[];
+            console.log(`sites :${JSON.stringify(sites)}
+            result :${JSON.stringify(this.state.resultSearch)}
+            word:${JSON.stringify(this.state.keyword)}`);
+
+        }
 
     }
 
@@ -80,14 +121,28 @@ class Header extends Component{
                 </NavItem>
                 <NavItem>
                 </NavItem>
-
             </Nav>
+             <Nav className="mr-auto">
+                 <LocalForm model="freeText"  className="inline mr-sm-2" onSubmit={(values) => this.handleSubmitSearch(values)}>
+                 <Row className="form-group">
+                     <Col xs={12}>
+                     <Control.text model=".word" id="word" name="word"  className="form-control" placeholder="Building name, floor"/>
+                     <button type="submit" className="btn-primary">
+                         <i className="icon search"/>
+                     </button>
+                     </Col>
+                 </Row>
+                 </LocalForm>
 
+                 <div>
+                     <FreeSearchResultBox
+                         resultSearch={this.state.resultSearch}
+                         keyword={this.state.keyword}>
+                         display={this.state.displayBox}
+                     </FreeSearchResultBox>
+                 </div>
+             </Nav>
 
-            <Form inline>
-                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                <Button variant="outline-primary">Search</Button>
-            </Form>
             </Navbar>
          </div>);
         }

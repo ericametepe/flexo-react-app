@@ -16,7 +16,7 @@ import {Link} from "react-router-dom";
         let userId=this.props.userId;
 
          let greports = this.props.reports;
-          let ureports=this.props.userreports.length
+          let ureports=this.props.userreports.length;
          let  greporters = greports.map(r=>r.userId).filter(onlyUnique).length;
          let g_avg=0;
           let u_avg=0;
@@ -44,7 +44,7 @@ import {Link} from "react-router-dom";
         let gratings_avg=0;
 
         if(uratings.length>0) {
-            uratings_avg = uratings.map(r => r.rate).reduce((a, b) => (a + b ),0) / uratings.length;
+            uratings_avg = uratings.map(r => r.rate).reduce((a, b) => (a + b ),0) / uratings.length===0?1:uratings.length
         }
         if(nbUsers(gratings)>0){
           gratings_avg= gratings.map(e=>e.rate).reduce((a,b)=>(a+b,0))/nbUsers(gratings);
@@ -70,7 +70,10 @@ import {Link} from "react-router-dom";
                                   rate={this.props.rate}
                                   report={this.props.report}
                                   addFav={this.props.addFav}
-                                  favorites={this.props.favorites}/>
+                                  favorites={this.props.favorites}
+                                  reports={this.props.reports}
+                                  ratings={this.props.ratings}
+                                   />
                     </div>);
             }
              else{
@@ -98,7 +101,10 @@ import {Link} from "react-router-dom";
                                   rate={this.props.rate}
                                   report={this.props.report}
                                   addFav={this.props.addFav}
-                                  favorites={this.props.favorites}/>
+                                  favorites={this.props.favorites}
+                                  reports={this.props.reports}
+                                  ratings={this.props.ratings}
+                        />
                     </div>);
             }
              else{

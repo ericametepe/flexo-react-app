@@ -5,6 +5,8 @@ import {Control, Form} from "react-redux-form";
 import {ScanForm} from "./ScanFormComponent";
 import RateForm from "./RateFormComponent";
 import {Link} from "react-router-dom";
+import {FeedLabel} from "semantic-ui-react";
+import {AVG_RATINGS, count_reports, formatNumber} from "./FlexoUtils";
 const ISSUES_NUM =["Technical issue","Desk in use","Not Clean","Other","Not functional"];
 
 export const isBusy=(sittings, deskId)=> sittings.some(sit=> sit.deskId.localeCompare(deskId)===0 && sit.end===null && sit.start!==null);
@@ -142,7 +144,7 @@ class DeskItem extends Component{
 
     render() {
 
-        let  {deskId, sittings}=this.props;
+        let  {deskId, sittings,ratings,reports,favorites}=this.props;
         let userId =localStorage.userId;
 
         const formRate=()=> {
@@ -171,47 +173,67 @@ class DeskItem extends Component{
                 <ListGroup horizontal>
                     <RenderDeskOwner userId={userId} sittings={sittings} deskId={deskId}/>&nbsp;
                     Desk  : {this.props.num} &nbsp;
-                    Floor : {this.props.floorNum}&nbsp;
-                    Space : {this.props.spaceNum}&nbsp;
-                    Building : {this.props.siteName}&nbsp;
+                   <Link to={'/sites/' + this.props.siteId + '/floors/' + this.props.floorId + '/spaces/' + this.props.spaceId + "/desks"}>
+                       Space : {this.props.spaceNum}&nbsp;&nbsp;
+                   </Link>
+                    <FeedLabel>Floor  :&nbsp;&nbsp;</FeedLabel>
+                    <Link to={"/sites/"+this.props.siteId+"/floors/"+this.props.floorId+"/spaces"}>
+                      {this.props.floorNum}&nbsp;&nbsp;
+                    </Link>
+                    Building :&nbsp;&nbsp;
+                    <Link to={"/sites/"+this.props.siteId+"/floors/"}>
+                         {this.props.siteName}
+                    </Link>
                 </ListGroup>
 
-                <ListGroup horizontal variant="info" >
-                   <ListGroupItem>
-                    <form name={isBusyTest?'leave':'sit'} onClick={isBusyTest? event =>  this.freeDesk(event):event=>this.useDesk(event)}>
+                <div className="container" name="desk">
+                    <div className="row">
+                   <div className="col" name="sit">
+                    <form name={isBusyTest?'Exit':'sit'} onClick={isBusyTest? event =>  this.freeDesk(event):event=>this.useDesk(event)}>
                     <div   className="ui primary button" >
                           {isBusy(sittings, deskId)?'Exit':'Sit'}
                     </div>
+                        <i className="ui basic blue left pointing label">{sittings?sittings.filter(sit=>sit.deskId.localeCompare(deskId)===0 &&
+                        sit.start!==null && sit.end!==null).length:0}</i>
                     </form>
-                  </ListGroupItem>
-                    <ListGroupItem>
+                   </div>
+
+                    <div className="col">
                     <button type="button" className="ui yellow button"  onClick={event => this.handleDisplayRate(event)}>
                         <i className="star icon">   </i>
                     </button>
-                     <RateForm displayRate={this.state.displayRate} handleSubmitRate={this.handleSubmitRate}></RateForm>
-                     </ListGroupItem>
+                        <i className="ui basic yellow left pointing label">{AVG_RATINGS(ratings)}</i>
+                     <RateForm displayRate={this.state.displayRate} handleSubmitRate={this.handleSubmitRate}/>
+                    </div>
 
-                    <ListGroupItem>
+                        <div className="col">
+                    <div name="scan">
                         <div  className="ui black button" onClick={this.handleDisplayScan}>
                         <i className="barcode icon">Scan</i>
                         </div>
 
-                        <ScanForm display={this.state.displayScan} image={this.props.image} num={this.props.num}></ScanForm>
-                    </ListGroupItem>
-
-                    <ListGroupItem>
-                        <div  className="ui pink button" onClick={this.handleAddFavorite}  disabled={isFav}>
-                            <i className="heart icon"></i>
+                        <ScanForm display={this.state.displayScan} image={this.props.image} num={this.props.num}/>
+                    </div>
                         </div>
-                    </ListGroupItem>
-                    <ListGroupItem>
+
+                        <div className="col">
+                        <button  className="ui pink button" onClick={this.handleAddFavorite}  disabled={isFav}>
+                            <i className="heart icon"></i>
+                        </button>
+                            <i className="ui basic pink left pointing label">{formatNumber(favorites?favorites.filter(f=>f.deskId.localeCompare(deskId)===0).length:0)}</i>
+                        </div>
+
+                        <div className="col-md-auto">
                         <div className="ui red button" onClick={event => this.handledisplayReport(event)}>
                             <i className="flag icon"></i>
                         </div>
-                        <ReportForm displayReport={this.state.displayReport}  handleSubmitReport={this.handleSubmitReport}></ReportForm>
-                   </ListGroupItem>
-                </ListGroup>
-        </div>);
+                            <i className="ui basic red left pointing label">{count_reports(reports,userId)}</i>
+                        <ReportForm displayReport={this.state.displayReport}  handleSubmitReport={this.handleSubmitReport}/>
+                        </div>
+                </div>
+                    <hr/>
+        </div>
+            </div>);
             }
 
     handleAddFavorite() {

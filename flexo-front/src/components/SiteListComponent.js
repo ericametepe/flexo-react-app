@@ -37,15 +37,14 @@ export default class SiteList extends Component {
                     <div className="description">
                         {site.name}
                     </div>
-                   </Link>
                     <div className="description">
                         {site.adresse}
                     </div>
+                   </Link>
                     <div className="badge-pill">
                         <RenderCount desks={findDesksBySiteId(this.props.sites,this.props.floors,this.props.spaces,this.props.desks, site.id)}
                                      sittings={this.props.sittings}/>
                     </div>
-
                     <div className="ui small images">
                         <img src={baseUrl+site.image}/>
                     </div>

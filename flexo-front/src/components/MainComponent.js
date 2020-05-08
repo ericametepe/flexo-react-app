@@ -155,6 +155,7 @@ class Main extends Component{
                 let space = locateElemById(this.props.spaces.spaces,lastsit.spaceId);
                 let floor = locateElemById(this.props.floors.floors, lastsit.floorId);
                 let desk = locateElemById(this.props.desks.desks,lastsit.deskId);
+                if (desk){
                 let {num, image}= desk;
                 lastsit.deskNum=num;
                 lastsit.image=image;
@@ -162,6 +163,7 @@ class Main extends Component{
                 lastsit.spaceNum=space?.num;
                 lastsit.siteName=site?.name;
                 lastsit.adresse=site?.adresse;
+                }
 
             }
 
@@ -171,7 +173,7 @@ class Main extends Component{
                           usersit={usersit}
                           lastsit={lastsit}
                           ratings={this.props.ratings.ratings}
-                          desks={this.props.desks.deskId}
+                          desks={this.props.desks.desks}
                           floors={this.props.floors.floors}
                           spaces={this.props.spaces}
                           userId={currentUser}
@@ -198,6 +200,8 @@ class Main extends Component{
               notifs={this.props.notifs.notifs}
               ackNotifs={this.props.ackNotifs}
               activeNotifs={activeNotifs}
+              sites={this.props.sites.sites}
+              floors={this.props.floors.floors}
 
           />);
         };

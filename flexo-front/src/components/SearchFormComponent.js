@@ -59,9 +59,7 @@ class SearchForm extends Component {
 
 
     handleSubmit(values) {
-        console.log(" desks======> :"+JSON.stringify(this.props.desks));
         let allDesk = this.props.desks;
-
         let test = (locateElemById(this.props.floors, values.floorId)) && locateElemById(this.props.sites,values.siteId);
 
 
@@ -151,7 +149,8 @@ class SearchForm extends Component {
                                    rate={this.props.rate}
                                    report={this.props.report}
                                    addFav={this.props.addFav}
-                                   favorites={this.props.favorites}/>
+                                   favorites={this.props.favorites}
+                                   reports={this.props.reports}/>
 
                 </div>
 

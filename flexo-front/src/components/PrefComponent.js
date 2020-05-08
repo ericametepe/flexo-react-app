@@ -1,10 +1,10 @@
 import React, {Component} from "react";
-import {Button, Table} from "react-bootstrap";
+import {Table} from "react-bootstrap";
 import DeskItem from "./DeskItemComponent";
 import {Alert, BreadcrumbItem} from "reactstrap";
 import Breadcrumb from "reactstrap/es/Breadcrumb";
 import {Link} from "react-router-dom";
-import PrefTab from "./PrefRecTab";
+import {locateElemById} from "./FlexoUtils";
 
 
 
@@ -37,6 +37,7 @@ class Pref extends Component{
 
         render() {
        let favorites=this.props.favorites;
+
          const PrefTable= ()=> {
              if (favorites && favorites.length>0){
              return(
@@ -53,11 +54,28 @@ class Pref extends Component{
                  </tr>
                  </thead>
                  <tbody>
-                 {favorites.sort((a, b) => a.id > b.id ? -1 : 1).map(fav =>
-                     <tr key={fav.id}>
+                 {favorites.sort((a, b) => a.id > b.id ? -1 : 1).map(fav =>{
+
+                     const {siteId,floorId,spaceId,deskId}=fav;
+
+                     let siteName = locateElemById(this.props.sites,siteId)?.name;
+                     let spaceNum=locateElemById(this.props.spaces,spaceId)?.num;
+                     let floorNum=locateElemById(this.props.floors,floorId)?.num;
+                     let deskNum=locateElemById(this.props.desks,deskId)?.num;
+                     let image=locateElemById(this.props.desks,deskId)?.image;
+
+                     return (<tr key={fav.id}>
                          <td>
                              <DeskItem postSit={this.props.postSit}
                                        deskId={fav.deskId}
+                                       siteId={fav.siteId}
+                                       floorId={fav.floorId}
+                                       spaceId={fav.spaceId}
+                                       siteName={siteName}
+                                       spaceNum={spaceNum}
+                                       floorNum={floorNum}
+                                       num={deskNum}
+                                       image={image}
                                        desks={this.props.desks}
                                        spaces={this.props.spaces}
                                        floors={this.props.floors}
@@ -73,7 +91,7 @@ class Pref extends Component{
                          <td>
                              <button onClick={() => this.handleDeleteFav(fav.id)} className="btn-danger">Delete</button>
                          </td>
-                     </tr>)}
+                     </tr>);})}
                  </tbody>
              </Table></div>);
              } else{
@@ -96,5 +114,5 @@ class Pref extends Component{
 
 
 
-    export default (Pref) ;
+    export default Pref ;
 
