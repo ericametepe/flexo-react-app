@@ -10,7 +10,7 @@ import React from "react";
                 <p>Result for search : <mark>{keyword}</mark></p>
 
                 <ul className="list-group">
-                    <Link to={"/sites/"+resultSearch[0].id+"/floors"}>
+                    <Link to={"/sites/"+resultSearch[0].siteId+"/floors"}>
                         <p>Site : {resultSearch[0].siteName} </p>
                     </Link>
                     {resultSearch[0].floors.map(f=>{
