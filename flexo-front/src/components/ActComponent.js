@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import DeskItem from "./DeskItemComponent";
-import {locateUserActions, nbUsers, onlyUnique} from "./FlexoUtils";
+import {formatNumber, locateUserActions, nbUsers, onlyUnique} from "./FlexoUtils";
 import {Alert, BreadcrumbItem} from "reactstrap";
 import {ListGroup, ListGroupItem} from "react-bootstrap";
 import Breadcrumb from "reactstrap/es/Breadcrumb";
@@ -26,6 +26,7 @@ import {Link} from "react-router-dom";
          if (greports>0){
            u_avg = ureports/greports;
          }
+
          let gsits=this.props.sittings;
          let usits=locateUserActions(gsits,this.props.userId).length;
          let  gsitters = nbUsers(gsits);
@@ -59,7 +60,7 @@ import {Link} from "react-router-dom";
                                   deskId={deskId}
                                   siteId={siteId}
                                   floorId={floorId}
-                                  spaceId={spaceId}
+                                  spaceId={spaceId}for
                                   num={deskNum}
                                   floorNum={floorNum}
                                   spaceNum={spaceNum}
@@ -132,7 +133,7 @@ import {Link} from "react-router-dom";
                                           | Global report
                                          <span className="badge-info">{this.props.reports.length}</span>
                                          | Your report average <span className="badge-info"> {u_avg} </span>| Global report average
-                                         <span className="badge-info"> {g_avg}</span>
+                                         <span className="badge-info"> {formatNumber(g_avg)}</span>
                                       </ListGroupItem>
 
                                       <ListGroupItem className="list-group-item-success">
@@ -145,7 +146,7 @@ import {Link} from "react-router-dom";
                                      <ListGroupItem className="list-group-item-success">
                                          Your total ratings<span className="badge-info"> {uratings.length} </span>
                                          | Global ratings <span className="badge-info">{gratings.length} </span>
-                                         | Your rate average <span className="badge-info"> {uratings_avg} </span>
+                                         | Your rate average <span className="badge-info"> {formatNumber(uratings_avg)} </span>
                                          | Global rate average <span className="badge-info">{gratings_avg}</span>
                                      </ListGroupItem>
                                   </ListGroup>

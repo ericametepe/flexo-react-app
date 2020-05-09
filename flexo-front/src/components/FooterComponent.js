@@ -17,12 +17,12 @@ import {Link} from "react-router-dom";
                       <div className="col-7 col-sm-5">
                           <h5>Our Address</h5>
                           <address>
-                              121, Clear Water Bay Road<br />
-                              Clear Water Bay, Kowloon<br />
-                              HONG KONG<br />
-                              <i className="fa fa-phone fa-lg"></i>: +852 1234 5678<br />
-                              <i className="fa fa-fax fa-lg"></i>: +852 8765 4321<br />
-                              <i className="fa fa-envelope fa-lg"></i>: <a href="mailto:eric.yawo.kodjovi@gmail.com"> </a>
+                              Conservatoire national
+                              des arts et métiers <br />
+                              F-75141 Paris Cedex 03<br />
+                              France<br />
+                              <i className="fa fa-phone fa-lg"/>: 33 (0)1 40 27 20 00<br />
+                              <a href="mailto:eric.yawo.kodjovi@gmail.com">  <i className="fa fa-envelope fa-lg"></i>: </a>
                           </address>
                       </div>
                       <div className="col-12 col-sm-4 align-self-center">

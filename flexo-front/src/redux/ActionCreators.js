@@ -454,7 +454,14 @@ export const addFav = (fav) => dispatch =>{
             }
         )
         .then(response => response.json())
-        .then(response => dispatch(createFavorite(response)))
+        .then(response => {
+            dispatch(createFavorite(response));
+                let newNotif = Object.assign({},response);
+                newNotif.type=CREATE_FAVORITE;
+                newNotif.nStart=new Date().toISOString();
+                newNotif.nEnd=null;
+                dispatch(addNotif(newNotif));
+            })
         .catch(error => {
             console.log("post favorite", error.message);
             alert("Your post favorite cannot be saved: " + error.message);

@@ -214,6 +214,15 @@
       "userId": "ae735c2c-dc8c-4c8d-b950-e4fbc953cdcd",
       "date": "2020-05-08T23:38:37.500Z",
       "id": 1
+    },
+    {
+      "siteId": "FE42EC9C-F216-9ED1-77F9-A879CD529481",
+      "floorId": "42878c49-3e6d-4b6c-9965-f5299fc390adp",
+      "spaceId": "42878c49-3e6d-4b6c-9965-f5299fc390ad",
+      "deskId": "4dd90045-c50e-47e7-95a0-82fb92eb7cc4",
+      "userId": "498c3694-72b6-4b0e-8591-bf96c5143b88",
+      "date": "2020-05-09T20:30:06.892Z",
+      "id": 2
     }
   ],
   "buildings": [
