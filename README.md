@@ -18,6 +18,8 @@ you can run:
 
 yarn start
 
+Visit the App :  http://localhost:3000
+
 
 
 You can read this document : docs/FlexofficeUIDesignAndProto.pdf to learn more about The App features and use cases.
