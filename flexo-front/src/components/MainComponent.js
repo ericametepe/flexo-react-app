@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
-import {Switch, Route, withRouter} from "react-router-dom";
+import {Switch, Route, withRouter, Redirect} from "react-router-dom";
 import Home from "./HomeComponent";
 import Pref from "./PrefComponent";
 import Act from "./ActComponent";
@@ -256,6 +256,7 @@ class Main extends Component{
                     <Route path="/sites/:siteId/floors" exact  component={SiteWithFloors}/>
                     <Route path="/sites/:siteId/floors/:floorId/spaces" exact  component={FloorWithSpaces}/>
                     <Route path="/sites/:siteId/floors/:floorId/spaces/:spaceId/desks" exact  component={SpaceWithDesks}/>
+                    <Redirect to="/home" />
 
                 </Switch>
             <Footer/>
